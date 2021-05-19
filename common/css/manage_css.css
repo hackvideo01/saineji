@@ -1,0 +1,127 @@
+
+h1{
+  font-size: 30px;
+  color: #01B0EF;
+  /*text-transform: uppercase;*/
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.manage_table{
+  min-height: 500px;
+}
+table td { 
+  font-weight: normal; 
+  background-color: #F3F3F3; 
+  border-left: 1px solid white; 
+  border-right: 1px solid white; 
+  border-bottom: 1px solid white; 
+  padding: 4px; line-height: 1.6em; 
+  font-size: 18px;
+}
+table{
+  width:100%;
+  table-layout: fixed;
+}
+th{
+  color: white;
+  font-weight: normal;
+  background-color: #ff9800;
+  border-left: 1px solid white; 
+  border-right: 1px solid white; 
+  border-bottom: 1px solid white; 
+  padding: 4px; line-height: 1.6em; 
+  font-size: 18px;
+}
+td{
+  padding: 15px;
+  text-align: left;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 12px;
+  color: #000;
+  border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+
+.tel{
+  width: 130px;
+}
+
+.edit{
+  width: 43px;
+}
+
+.delete{
+  width: 43px;
+}
+
+.detail{
+  width: 43px;
+}
+
+section{
+  margin: 50px;
+}
+
+/* for custom scrollbar for webkit browser*/
+
+::-webkit-scrollbar {
+    width: 6px;
+} 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+} 
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+
+.button{
+  text-align: center;
+  /*margin:69px auto 0;*/
+}
+
+.button button{
+  /*border: 1px solid #D0E4EE;*/
+  background-color: #01B0EF;
+  color: white;
+  padding: 10px;
+  border-radius: 15px;
+  margin: 50px;
+  width: 120px;
+  font-weight: bold;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.pagination_center{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 3px 20px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination a.active {
+  background-color: #00cec5;
+  color: white;
+  border: 1px solid #ffffff;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.current_page{
+  background-color: #00cec5;
+  color: white;
+  border: 1px solid #ffffff;
+}

@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="./common/css/style_login.css">　
+  <?if($_SESSION["role"]==1){?>
+    <title> 運営管理画面</title>
+    
+  <div class="wrapper fadeInDown">
+    <div id="formContent-index">
+       <div class="main-menu">
+        
+          <h1 class="menu-title">運営管理画面</h1>
+          <button  onclick="window.location.href='?cat=2&ID=new'" class="btn-menu"  >新規追加</button> 
+          <button  onclick="window.location.href='?cat=1'" class="btn-menu"  > 情報更新.削除へ</button> 
+            
+        
+      </div>
+     <div id="formFooter">
+    </div>
+      </div>
+    </div>
+</div>
+  <?}else{?>
+    <title> 会員管理画面</title>
+  <div class="wrapper fadeInDown">
+    <div id="formContent-index">
+       <div class="main-menu">
+        
+          <h1 class="menu-title">会員管理画面</h1>
+          <button  onclick="window.location.href='?cat=2&ID=<?=$_SESSION["ID_Mater"]?>'" class="btn-menu"  >お店情報修正へ</button> 
+          <button  onclick="window.location.href='?cat=2'" class="btn-menu"  >News修正へ</button> 
+
+      </div>
+     <div id="formFooter">
+    </div>
+      </div>
+    </div>
+    <?}?>

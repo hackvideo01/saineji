@@ -1,0 +1,758 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	height: 100%;
+	background-color: #01B0EF;
+}
+
+ span{
+ 	font-size: 12px;
+ }
+
+ span title1{
+  font-size: 40px;
+ }
+
+
+ .content{
+ 	border: 3px solid white;
+ }
+
+ hr{
+ 	height: 2px;
+ 	background-color: white;
+ 	width: 90%;
+ 	margin-left: auto;
+ 	margin-right: auto;
+ 	margin-top: 13px;
+ 	margin-bottom: 5px;
+ 	border: 1px solid white;
+ }
+
+ .anime{
+  /*height: 280px;*/
+  position: absolute;
+  bottom: 5px; 
+  left: 510px; 
+  z-index: 0;
+ }
+
+ .header{
+ 	width: 100%;
+ 	height: 70px;
+ 	display: flex;
+  justify-content: space-around;
+ }
+
+ .title1{
+ 	width: 39%;
+	margin-left: 16px;
+ 	margin-top: 20px;
+ 	color: white;
+ 	font-size: 31px;
+ }
+
+ .local{
+  display: flex;
+  justify-content: space-around;
+ 	margin-top: 5px;
+	margin-left: 5px;
+ 	color: white;
+ 	width: 38%;
+ 	font-size: 23px;
+ }
+
+ .hours{
+ 	color: white;
+ 	font-size: 45px;
+ 	/*margin-left: 299px; */
+ 	width: 20%;
+ 	margin-top: 18px;
+  text-align: center;
+ }
+
+ .menu1{
+ 	margin-top: 5px;
+ 	margin-left: auto;
+ 	margin-right: auto;
+ 	/*height: 255px;*/
+ 	width: 90%;
+ /*	background-color: black;
+ 	border: 3px solid white;*/
+ }
+ img {
+  vertical-align: middle;
+  padding: 5px;
+}
+#weather-icon{
+      margin: -32px 0px 0px -9px;
+}
+/* Position the image container (needed to position the left and right arrows) */
+.container {
+  position: relative;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next and "prev" button" to the right */
+.next {
+  margin: auto;
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev {
+  margin: auto;
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  /*background-color: rgba(0, 0, 0, 0.8);*/
+}
+
+ .menu2{
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  /*height: 255px;*/
+  width: 90%;
+ /* background-color: black;
+  border: 3px solid white;*/
+ }
+ }
+
+.mySlides {
+	display:none;
+}
+
+ #map{
+ 	margin-top: 8px;
+ 	margin-left: auto;
+ 	margin-right: auto;
+ 	height: 650px;
+ 	width: 95%;
+ 	border: 10px solid white;
+ }
+
+ .title2{
+ 	margin: 5px;
+ 	padding: 10px;
+ 	padding-bottom: 1px;
+ 	background-color: #01B0EF;
+ 	color: white;
+ 	z-index: 0;
+ 	position: absolute;
+ 	text-decoration: underline;
+ }
+
+ .news{
+ 	margin-top: 10px;
+ 	margin-left: auto;
+ 	margin-right: auto;
+ 	width: 95%;
+ 	height: 99px;
+ 	border: 3px solid white;
+ 	border-radius: 20px;
+ 	background-color: #A0E1F7;
+ 	display: flex;
+ }
+
+ .news-tilte{
+ 	font-size: 20px;
+ 	margin-top: 5px;
+ 	margin-left: 10px;
+ 	color: white;
+ 	font-weight: bold;
+}
+
+/*Screen Saver*/
+        .Screensaver{
+            left: 0; top: 0; right: 0; bottom: 0;
+            z-index: 100000000000;
+            color: #eee;
+            background-color: #000;
+          }
+          #display{
+            color: #eee;
+            background-color: #000;
+          }
+           video {
+            position: fixed;
+            z-index:2;
+            right: 0;
+            /*left: -730px;*/
+            bottom: 0;
+            min-width: 100%; 
+            min-height: 100%;
+          }
+          .button_start {
+            position: fixed;
+            margin: 0 auto;
+            z-index:3;
+            top: 352px;
+            left: 85px;
+            right: 75px;
+            width:600px;
+            height:600px;
+          }
+         .atami{
+            position: fixed;
+            z-index:3;
+            top: 263px;
+            left: 166px;
+            font-size:86px;
+            font-weight:100;
+            font-family: sans-serif;
+          }
+           .start{
+            position: fixed;
+            z-index:3;
+            top: 938px;
+            left: 166px;
+            font-size:86px;
+            font-weight:100;
+            font-family: sans-serif;
+          }
+/*24 inch*/
+@media only screen and (max-width: 1200px) and (max-height: 1920px) {
+  .title1{
+  font-size: 30px;
+  }
+
+  .local{
+  font-size: 22px;
+  }
+
+  .hours{
+    font-size: 38px;
+  }
+
+  .anime{
+    left: 950px;
+    bottom: 0;
+  }
+
+  #map{
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 1236px;
+  width: 98%;
+  border: 6px solid white;
+ }
+
+  .atami{
+  left: 360px;
+}
+ .start{
+  left: 360px;
+}
+}
+
+/*20-22 inch*/
+@media only screen and (max-width: 1050px) and (max-height: 1680px) {
+  .title1{
+  font-size: 30px;
+  }
+
+  .local{
+  font-size: 22px;
+  }
+
+  .hours{
+    font-size: 38px;
+  }
+
+  .anime{
+    left: 800px;
+    bottom: 0;
+  }
+
+  #map{
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 996px;
+  width: 98%;
+  border: 6px solid white;
+ }
+}
+
+/* 標準 20-22 inch*/
+@media only screen and (max-width: 1200px) and (max-height: 1600px) {
+  .title1{
+  font-size: 30px;
+  }
+
+  .local{
+  font-size: 22px;
+  }
+
+  .hours{
+    font-size: 38px;
+  }
+
+  .anime{
+    left: 800px;
+    bottom: 0;
+  }
+
+  #map{
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 916px;
+  width: 98%;
+  border: 6px solid white;
+ }
+}
+
+/*width = 17 inch*/
+@media only screen and (max-width: 1050px) and (max-height: 1680px) {
+  .title1{
+  font-size: 30px;
+  }
+
+  .local{
+  font-size: 22px;
+  }
+
+  .hours{
+    font-size: 38px;
+  }
+
+  .anime{
+    left: 463px;
+    bottom: 0;
+  }
+
+  #map{
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 985px;
+  width: 98%;
+  border: 6px solid white;
+ }
+
+ .atami{
+  left: 279px;
+}
+ .start{
+  left: 279px;
+}
+}
+
+/* 標準 width = 13 - 15 inch*/
+@media only screen and (max-width: 1050px) and (max-height: 1400px) {
+  .title1{
+  font-size: 30px;
+  }
+
+  .local{
+  font-size: 22px;
+  }
+
+  .hours{
+    font-size: 38px;
+  }
+
+  .anime{
+    left: 463px;
+    bottom: 0;
+  }
+
+  #map{
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 716px;
+  width: 98%;
+  border: 6px solid white;
+ }
+
+  .atami{
+    left: 276px;
+  }
+   .start{
+    left: 276px;
+  }
+}
+
+@media only screen and (max-width: 810px) and (max-height: 1440px) {
+  .title1{
+  font-size: 30px;
+  }
+
+  .local{
+  font-size: 22px;
+  }
+
+  .hours{
+    font-size: 38px;
+  }
+
+  .anime{
+    left: 463px;
+    bottom: 0;
+  }
+
+  #map{
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 758px;
+  width: 98%;
+  border: 6px solid white;
+ }
+
+    .atami{
+  left: 166px;
+}
+ .start{
+  left: 166px;
+}
+}
+
+@media only screen and (max-width: 810px) and (max-height: 1360px) {
+  .title1{
+  font-size: 30px;
+  }
+
+  .local{
+  font-size: 22px;
+  }
+
+  .hours{
+    font-size: 38px;
+  }
+
+  .anime{
+    left: 463px;
+    bottom: 0;
+  }
+
+  #map{
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 678px;
+  width: 98%;
+  border: 6px solid white;
+ }
+
+   .atami{
+  left: 166px;
+}
+ .start{
+  left: 166px;
+}
+}
+
+/*19 inch*/
+@media only screen and (max-width: 1024px) and (max-height: 1280px) {
+  .title1{
+  font-size: 30px;
+  }
+
+  .local{
+  font-size: 22px;
+  }
+
+  .hours{
+    font-size: 38px;
+  }
+
+  .anime{
+    left: 650px;
+    bottom: 0;
+  }
+
+  #map{
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 598px;
+  width: 98%;
+  border: 6px solid white;
+ }
+}
+
+/*width = 13 - 15 inch*/
+@media only screen and (max-width: 800px) and (max-height: 1280px) {
+  .title1{
+  font-size: 25px;
+  }
+
+  .local{
+  font-size: 21px;
+  }
+
+  .hours{
+    font-size: 38px;
+  }
+
+  .anime{
+    left: 463px;
+    bottom: 0;
+  }
+
+  #map{
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 598px;
+  width: 98%;
+  border: 6px solid white;
+ }
+
+ .atami{
+  left: 166px;
+}
+ .start{
+  left: 166px;
+}
+}
+
+
+@media only screen and (max-width: 782px) {
+  .title1{
+  font-size: 30px;
+  }
+
+  .local{
+  font-size: 19px;
+  }
+
+  .hours{
+    font-size: 38px;
+  }
+
+  .anime{
+    left: 463px;
+    bottom: 0;
+  }
+
+  #map{
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 666px;
+  width: 98%;
+  border: 6px solid white;
+ }
+
+ .atami{
+  left: 126px;
+}
+ .start{
+  left: 126px;
+}
+}
+
+@media only screen and (max-width: 768px) {
+  .title1{
+  font-size: 24px;
+  margin-top: 26px;
+  }
+
+  .local{
+  font-size: 20px;
+  }
+
+  .hours{
+    font-size: 38px;
+  }
+
+  .anime{
+    left: 463px;
+    bottom: 0;
+  }
+
+  #map{
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 685px;
+  width: 98%;
+  border: 6px solid white;
+ }
+
+ .atami{
+  left: 126px;
+}
+ .start{
+  left: 126px;
+}
+}
+
+@media only screen and (max-width: 747px) {
+  .title1{
+  font-size: 29px;
+  }
+
+  .local{
+  font-size: 19px;
+  }
+
+  .hours{
+    font-size: 38px;
+  }
+
+  .anime{
+    left: 463px;
+    bottom: 0;
+  }
+
+  #map{
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 646px;
+  width: 98%;
+  border: 6px solid white;
+ }
+
+  .atami{
+  left: 126px;
+}
+ .start{
+  left: 126px;
+}
+}
+
+
+/*anime*/
+.ml9 {
+  position: relative;
+  font-weight: 200;
+  font-size: 4em;
+}
+
+.ml9 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+
+.ml9 .letter {
+  transform-origin: 50% 100%;
+  display: inline-block;
+  line-height: 1em;
+} 
+
+
+#anime{
+    /*text-align: center;
+    width: 100px;
+    position: absolute;
+    animation: anime 3s infinite alternate;*/
+    /*animation-delay: 3s;*/
+    /*animation-timing-function: cubic-bezier(.17,.67,.86,.69)*/
+}
+
+@keyframes anime {
+
+  from  {
+        left:65%; 
+        /*opacity:0*/
+        /*top:70%;*/
+        /*transform: rotate(360deg);*/
+      }
+  to {
+        left:0px; 
+        /*top:0px;*/
+        /*transform: rotate(360deg);*/
+        }
+
+}
+
+
+@media only screen and (max-width: 810px) and (max-height: 1360px){
+  .itosen{
+    margin: 60px 0 0 226px;
+  }
+
+  .bus{
+    margin: 90px 0 0 226px;
+  }
+
+  #title_itosen{
+    left: 432px;
+  }
+
+  #title_bus{
+    left: 443px;
+  }
+}
+
+@media only screen and (max-width: 782px){
+  .itosen{
+    margin: 60px 0 0 198px;
+  }
+
+  .bus{
+    margin: 90px 0 0 198px;
+  }
+
+  #title_itosen{
+    left: 405px;
+  }
+
+  #title_bus{
+    left: 425px;
+  }
+}
+
+@media only screen and (max-width: 747px){
+  .itosen{
+    margin: 60px 0 0 176px;
+  }
+
+  .bus{
+    margin: 90px 0 0 176px;
+  }
+
+  #title_itosen{
+    left: 383px;
+  }
+
+  #title_bus{
+    left: 397px;
+  }
+}
+
+  

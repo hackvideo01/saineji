@@ -1,0 +1,445 @@
+
+<!-- <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″/> -->
+<title> 入力フォーム</title>
+<link rel="stylesheet" href="./common/css/entry_example.css">
+<link rel="stylesheet" href="./common/css/resp_table.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+<style type="text/css">
+	#imageFile::before {
+		content: "画像を選択";
+		position: absolute;
+		/*z-index: 2;*/
+		margin-top: 3px;
+		margin-left: 9px;
+		/* margin: 0 auto; */
+		display: block;
+		background-color: #eee;
+		width: 81px;
+	}
+	/*#entry-example::before {
+	z-index: 2;
+	}*/
+	.gallery{
+		display: flex;
+	}
+	.view-img {
+		display: grid;
+		margin-left:  5px;
+	}
+	.gallery img{
+		width: 160px;
+		height: 120px;
+
+	}
+	.gallery label{
+		color: red;
+	}
+	.gallery a{
+		text-align: right;
+	}
+	.day{
+		font-size: 22px;
+	}
+	.css-video{
+		width: 160px;
+		height: 120px;
+	}
+	.btn-button{
+		display: flex;
+	}
+	.btnsubmit{
+		margin: auto;
+		margin-top: 20px;
+		background-color: #4285F4;
+		border-radius: 28px;
+		border: 1px solid #4285F4;
+		display:block; 
+		cursor: pointer;
+		color: white;
+		font-family: Arial;
+		font-size: 17px;
+		padding: 10px 40px;
+		text-decoration: none;
+		text-shadow: 0px 1px 0px #4285f4;
+		outline: none;
+	}
+	.entry-example{
+		width: 85%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 10px;
+		text-align: right;
+	}
+	/*//upload file*/
+	#userImage {
+		display: none;
+	}
+
+	.upload-btn {
+		border: 1px solid burlywood;
+		text-align: center;
+		margin: 5px auto 5px;
+		width: 150px;
+		/*height: 18px;*/
+		background-color: #ffe17f;
+		line-height: 18px;
+		border-radius: 20px;
+	}
+
+	.upload-btn:hover {
+		background-color: #c39d5a;
+		color: white;
+		cursor: pointer;
+	}
+	table th, table td{
+		padding: 5px;
+	}
+	.form-title{
+		display: flex;
+		justify-content: center;
+	}
+	.form-edit{
+		/*width: 85%;*/
+		margin-left: auto;
+		display: flex;
+		justify-content: space-around;
+		font-weight: bold;
+	}
+</style>
+
+<body>
+	<!-- <p class="day" id="day" name="day"></p> -->
+
+<?if($confirm!=1){?>
+<?if($_REQUEST["ID"]=="time"){?>
+	<div class="form-title">
+		<img src="./common/icon/edit -icon.png" style="height: 40px;margin-right: 10px;"><h1 style="text-align: center;color: #0090D5;">時刻表</h1>
+	</div>
+<?}else{?>
+	<div class="form-edit">
+		<div class="form-title">
+		<img src="./common/icon/edit -icon.png" style="height: 40px;margin-right: 10px;"><h1 style="text-align: center;color: #0090D5;">時刻表</h1>
+		</div>
+		<div class="form-title">
+			<h1 style="text-align: center;color: #0090D5;">修正・削除</h1>
+		</div>
+	</div>
+<?}?>
+<div class="form-inputdata" style="">
+<form id="inputform" name="from-input" class="" method="POST" onsubmit="return formValidate1()" action="<?=$base_url?>" enctype="multipart/form-data">
+
+<table class="t_form" align="center">
+	<tr>
+		<th>カテゴリ</th>
+		<td>
+			<select name="Category_id">
+			<?if ($_REQUEST["ID"]=="time") { ?>
+					<option value="">ーーーーーー選択をしてください。ーーーーーー</option>
+					<?foreach($category as $categoryName) {?>
+						<option value="<?=$categoryName['ID'];?>"> <?=$categoryName['Name'];?></option>
+					<?}?>
+				
+			<?}else{?>
+					<?foreach($category as $categoryName) {?>
+						<option value="<?=$categoryName["ID"];?>" <?if($categoryName["Name"]==$data_post["Category"]){?>selected<?}?> > <?=$categoryName["Name"]?> </option>
+						<!-- <option > <?=$data_post["Caterogy"]?> </option> -->
+					<?}?>
+				<!-- <input type="text" class="w50p" name="Caterogy"  value="<?=$data_post["Caterogy"]?>" required> -->
+			<?}?>
+			</select>
+			<input hidden="hidden" type="text" name="ID" value="<?=$data_post["ID"]?>">
+		</td>
+
+		<th>掲載</th>
+		<td class="choice" >
+			<input type="radio" id="Flag" name="Flag" value="1" checked>
+			<label for="0">する</label>
+			<input type="radio" id="Flag" name="Flag" value="0">
+			<label for="1">しない</label>
+		</td>	
+	</tr>
+	
+	<tr>
+		<th>　QRコード用URL（上り用）<br>（バスと伊東線とJR線の時はここだけ使う）</th>
+		<td colspan="3"><input type="text" class="w50p" id="QR_1" name="QR_1"  value="<?=$data_post["QR_1"]?>" required></td>		
+	</tr>
+
+	<tr>
+		<th>QRコード用UR（下り用）</th>
+		<td colspan="3"><input type="text" class="w50p" id="QR_2" name="QR_2"  value="<?=$data_post["QR_2"]?>" ></td>		
+	</tr>
+</table>
+</div>
+<div class="btn-button">
+	<input type="hidden" id="action" name="action" value="tw">
+	<input type="hidden" id="confirm" value="<?=$confirm?>" />
+	<?if($_REQUEST["ID"]=="time"){?>
+		<button class="btnsubmit" id="submit" value="submit" name="submit" type="submit" >	登録へ</button>
+	<?}else{?>
+		<button class="btnsubmit" id="submit"  name="submit" type="button" onclick="backdataview()" >キャンセル</button>
+		<button class="btnsubmit" id="submit" value="submit" name="submit" type="submit" >	完了</button>
+	<?}?>
+</button>		
+</div>
+</form>
+</div>
+<script type="text/javascript">
+	// auto resize textarea
+	$('textarea').each(function () {
+		this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+	}).on('input', function () {
+		this.style.height = 'auto';
+		this.style.height = (this.scrollHeight) + 'px';
+	});
+
+	function phoneMask() { 
+		var num = $(this).val().replace(/\D/g,''); 
+		if(num!=="")
+			$(this).val(num.substring(0,3) +"-"+ num.substring(3,7) +"-"+  num.substring(7,11)); 
+	}
+	$('[type="tel"]').keyup(phoneMask);
+
+	function backdataview(){
+		var role = "<?=$_SESSION['role']?>" ;
+		if(role=="1"){
+			var  url_dataview = "./?cat=10";	
+		}else{
+			var  url_dataview = "./index.php";	
+		}
+		window.location = url_dataview;
+	}
+
+	// validate form
+	function formValidate1(){
+		var userImageCount = document.getElementById("userImageCount").value;
+		if(userImageCount == "" || userImageCount ==null || userImageCount =="0"){
+			$('.gallery > label').remove();
+			$( ".gallery" ).append('<label for="name">画像ファイルを選択ください。</label>');
+	// this.setCustomValidity('画像データの有無を選択ください。');
+	return false;
+	}
+	return true;
+	}
+		$(document).ready(function () {
+			$("input[name=Caterogy]").on("invalid", function () {
+				if(this.validity.valueMissing){
+					this.setCustomValidity('カテゴリを入力してください');
+				}else{
+					this.setCustomValidity('');
+				}
+			});
+			$("input[name=Name]").on("invalid", function () {
+				if(this.validity.valueMissing){
+					this.setCustomValidity('店名を入力してください');
+				}else{
+					this.setCustomValidity('');
+				}
+			});
+			$("input[name=Address]").on("invalid", function () {
+				if(this.validity.valueMissing){
+					this.setCustomValidity('住所を入力してください');
+				}else{
+					this.setCustomValidity('');
+				}
+			});
+			$("input[name=Time_work]").on("invalid", function () {
+				if(this.validity.valueMissing){
+					this.setCustomValidity('営業時間を入力してください');
+				}else{
+					this.setCustomValidity('');
+				}
+			});
+			$("input[name=Tel]").on("invalid", function () {
+				if(this.validity.valueMissing){
+					this.setCustomValidity('電話番号を入力してください');
+				}else{
+					this.setCustomValidity('');
+				}
+			});
+			$("textarea[name=Introduce_cm]").on("invalid", function () {
+				if(this.validity.valueMissing){
+					this.setCustomValidity('紹介コメントを入力してください');
+				}else{
+					this.setCustomValidity('');
+				}
+			});
+			$("input[name=QR_1]").on("invalid", function () {
+				if(this.validity.valueMissing){
+					this.setCustomValidity('QRコード用URL1を入力してください');
+				}else{
+					this.setCustomValidity('');
+				}
+			});
+			$("input[name=QR_2]").on("invalid", function () {
+				if(this.validity.valueMissing){
+					this.setCustomValidity('QRコード用URL2を入力してください');
+				}else{
+					this.setCustomValidity('');
+				}
+			});
+		});
+		function selectradio(isImage){
+			if(isImage==1){
+				$("#userImage").removeAttr( "disabled", "disabled" );
+				$("#userImageCount").removeAttr( "disabled", "disabled" );
+			}else{
+				document.getElementById("userImageCount").value =  "";
+				$('.gallery > div').remove();
+				$("#userImage").attr( "disabled", "disabled" );
+				$("#userImageCount").attr( "disabled", "disabled" );
+			}
+		}
+	//image 
+	$(function() {
+    // Multiple images preview in browser
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+    	if (input.files) {
+    		$('.gallery > label').remove();
+    		var userImageCount = document.getElementById("userImageCount").value;
+    		var file = input.files;
+    		var formdata = new FormData();
+    		var length = input.files.length;
+    		var countImg = 0;
+    		if(parseInt(userImageCount)==NaN || userImageCount=="" || parseInt(userImageCount)==null){
+    			countImg = length;
+
+    		}else{
+    			countImg = parseInt(userImageCount)  + length;
+    		}
+    		if(countImg>4){
+    			$( ".gallery" ).append('<label for="name">写真は最大4枚で、再入力してください。</label>');
+    			document.getElementById("userImage").value =""; 
+    			return;
+    		}
+            //remove old img
+            $('.gallery > div').remove();
+
+            for(var x = 0; x < length ; x ++){
+            	formdata.append('userImage[]', file[x]);
+            }
+            // form.append('media[]', file);
+            formdata.append('action', $('#action').val());
+            formdata.append('status', "insert");
+            formdata.append('type', "0");
+
+            $.ajax({
+            	url : "upload_file.php",
+            	type: "POST",
+            	cache: false,
+            	contentType: false,
+            	processData: false,
+            	data : formdata,
+            	success: function(response){
+            		var datajson = JSON.parse(response);
+            		lengthData = datajson.length;
+            		document.getElementById("userImageCount").value = lengthData
+            		for(var i =0;i<lengthData ; i++){
+            			strtype_img = "image";
+            			strtype_video = "video";
+         //            	if(datajson[i]["UploadType"].includes(strtype_video) ){
+		    			// var html = "<div class='view-img' id='img"+i+"'><span class='remove' data-file='"+datajson[i]["UploadName"]+"'><i class='fas fa-times'></i></span>"+
+		    			// "<video class='css-video' controls> <source src="+datajson[i]["UploadPath"]+" type='video/mp4'> </video>"
+		    			// +"</div>";
+			    		// }else{
+			    			var html = '<div class="view-img" id="img'+i+'"><span class="remove" data-file="'+datajson[i]["UploadName"]+'"><i class="fas fa-times"></i></span><img src="'+datajson[i]["UploadPath"]+'"></div>';
+			    		// }
+			    		$('.gallery').append(html);
+			    	}
+			    }
+			});
+        }
+    };
+    $('#userImage').on('change', function() {
+    	imagesPreview(this, 'div.gallery');
+    });
+});
+// remove image
+$(document).on('click', ".remove", function() {
+var parent = $(this).parent().parent().attr('class');
+if(parent == "gallery"){
+	var userImageCount = document.getElementById("userImageCount").value;
+	document.getElementById("userImageCount").value = parseInt(userImageCount)-1;
+}
+var file = $(this).data("file");
+var status = false;
+var thiscurrent = $(this);
+$.ajax({
+	url : "upload_file.php",
+	type: "POST",
+	data : {
+		action:$('#action').val(),
+		status:"remove",
+		filename:file
+	},
+	success: function(response){
+		var datajson = JSON.parse(response);
+		if(datajson.success){
+			thiscurrent.parent().remove();
+			thiscurrent.parent(".view-img").remove();
+		}
+	}
+});
+});
+
+function FileListItems (files) {
+var b = new ClipboardEvent("").clipboardData || new DataTransfer()
+for (var i = 0, len = files.length; i<len; i++) b.items.add(files[i])
+	return b.files
+};
+
+function getLongLng(item){
+   var geocoder = new google.maps.Geocoder();
+   var address = item.value;
+   if (geocoder) {
+      geocoder.geocode({ 'address': address }, function (results, status) {
+         if (status == google.maps.GeocoderStatus.OK) {
+			var location = results[0].geometry.location;
+			document.getElementById("Lng").value = location.lng();
+			document.getElementById("Lat").value = location.lat();
+         }
+      });
+   }
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqVs5DU4Nm_m7wDBK894Bui6-mfmQ2xbo&callback=initMap&libraries=&v=weekly&language=ja&region=JP"></script>
+<?
+/*-*----------------------------------------------------*-*
+* 登録完了画面
+*-*----------------------------------------------------*-*/
+}elseif( $confirm== 1 )
+{
+	?>
+	<SCRIPT type="text/javascript">
+		
+		var role = <?=$_SESSION['role']?> ;
+		var next = "?cat=10";
+		if(role==1){
+			alert("時刻表の情報を登録されました。");
+			var  next = "./?cat=10";	
+		}else{
+			alert("時刻表の情報を編集出来ました。");
+			var  next = "./index.php";	
+		}
+		
+		
+		setTimeout("link()", 0);
+
+		function link(){
+			location.href=next;
+		}
+
+	</SCRIPT>
+
+	<BR><BR><BR>
+	<!-- <div class="TB14pxNonBlue" align="center">
+	データを<?=$ap_text?>しました。トップページに移動します
+	<div>移動しない場合は<a href="<?=$base_url?>&vw_ctl=list">こちら</a>をクリックしてください</div>
+</div> -->
+<? } ?>
+
+</body>
+</html>

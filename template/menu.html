@@ -1,0 +1,321 @@
+
+<style type="text/css">
+  /*.main-menu{
+    margin: 30px 0 50px;
+    padding: 20px;
+    background: #eef3f7;
+    overflow: hidden;
+  }
+  .menu-left{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 15px 0 15px;
+    /*padding: 20px;*/
+    /*background: #eef3f7;
+    overflow: hidden;*/
+  }
+  .menu-right{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 15px 0 15px;
+    /*padding: 20px;*/
+    /*background: #eef3f7;
+    overflow: hidden;*/
+  }
+   .sub-menu {
+    min-width: 300px;
+    border-radius: 50px;
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+    -webkit-box-shadow: 0 25px 40px 0 rgb(0 0 0 / 30%);
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    margin: 10px 15px 10px 10px;
+    padding: 0;
+    /*background: #ffffff;*/
+    float: left;
+    width: calc(25% - 30px + (30px / 4));
+    background: #6d286d;
+  }
+/*  .sub-menu:hover{
+    background: #961c96;
+  }*/
+  /*// auto hover */
+   .sub-menu:hover {
+    filter: brightness(150%);
+  }
+  .sub-menu a{
+    margin :0;
+    padding: 12px;
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+  }
+ 
+  .sub-menu a img{
+    text-decoration: none;
+    margin:0 5px 0 0;
+    padding: 0;
+    display: block;
+    float: left;
+    /*width: 45px;*/
+    max-height: 120px;
+  }
+  .sub-menu a p{
+    color: white;
+    font-weight: bold;
+    font-size: 45px !important;
+    margin: 0;
+    padding: 0;
+    display: table-cell;
+    vertical-align: middle;
+    height: 45px;
+    line-height: 2.3em;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  img {
+    /*max-height: 80px;*/
+    vertical-align: bottom;
+  }
+ @media screen and (max-width: 1280px){
+ /* .menu-left{
+    width: 0;
+    display: block;
+    padding: 0;
+    margin: 0;
+  }
+   .menu-right{
+    width: 0;
+    display: block;
+    padding: 0;
+    margin: 0;
+  }*/
+  .sub-menu{
+     width: calc(30% - 30px + (30px / 4));
+  }
+} 
+@media screen and (max-width: 1024px){
+  .wapper{
+    margin-top: 0; 
+  }
+   .sub-menu{
+     width: calc(45% - 30px + (30px / 4));
+     min-width: 280px;
+  }
+ .sub-menu a img{
+    margin:10px 5px 0 0;
+    padding: 0;
+    display: block;
+    float: left;
+    /*width: 45px;*/
+    max-height: 80px;
+  }
+   .sub-menu a p{
+
+    font-weight: bold;
+    font-size: 38px !important;
+    margin: 0;
+    padding: 0;
+    display: table-cell;
+    vertical-align: middle;
+    height: 45px;
+    line-height: 2.3em;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+}
+@media screen and (max-width: 600px){
+  .menu-left{
+    display: block;
+    padding: 0;
+    margin: 0;
+  }
+   .menu-right{
+    display: block;
+    padding: 0;
+    margin: 0;
+  }
+  .sub-menu{
+    width: 95%;
+  }
+.btn-menu >i{
+  text-align: left;
+}
+</style>
+<link rel="stylesheet" href="./common/css/style_login.css">　
+  <?if($_SESSION["role"]==1){?>
+    <title> 運営管理画面</title>
+    
+    <?if($_REQUEST["grid"]==null){?>
+     <div class="wrapper-menu">
+      <div class="menu-left">
+          <div class="sub-menu" style="background:#dc4a29; ">
+            <a href="./?grid=1">
+              <img src="./common/icon/restaurant_icon.png">
+              <p>食べる</p>
+            </a>
+          </div>
+           <div class="sub-menu" style="background: #124ebb;">
+            <a href="./?grid=2">
+              <img src="./common/icon/house.png">
+              <p>泊まる</p>
+            </a>
+          </div>
+           <div class="sub-menu" style="background: #b9721a;">
+            <a href="./?grid=3">
+              <img src="./common/icon/tourism.png">
+              <p>観光</p>
+            </a>
+          </div>
+          </div>
+          <div class="menu-right">
+          <div class="sub-menu"  style="background: #1e5d0f;">
+            <a href="./?grid=4">
+              <img src="./common/icon/news.png">
+              <p>News</p>
+            </a>
+          </div>
+           <div class="sub-menu">
+            <a href="./?grid=5">
+              <img src="./common/icon/edit.png">
+              <p>時刻表</p>
+            </a>
+          </div>
+          <div class="sub-menu"  style="background: #0095b7;">
+            <a href="./?grid=6">
+              <img src="./common/icon/nightlife.png">
+              <p>夜遊び</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    <?}else{?>
+    <div class="wrapper-menu fadeInDown">
+    <div id="formContent-index">
+       <div class="main-menu">
+          <?if($_REQUEST["grid"]==1){?>
+          <!-- 食べる画面 -->
+          <h1 class="menu-title">（食べる）運営管理画面</h1>
+          <button  onclick="window.location.href='?cat=2&ID=new'" class="btn-menu"  ><i class="fas fa-plus-circle"></i> 新規追加</button> 
+          <button  onclick="window.location.href='?cat=1'" class="btn-menu"  ><i class="far fa-edit"></i> 情報更新.削除へ</button> 
+          <?}else if($_REQUEST["grid"]==2){?>
+          <!-- 泊まる画面 -->
+          <h1 class="menu-title">（泊まる）運営管理画面</h1>
+          <button  onclick="window.location.href='?cat=5&ID=hotel'" class="btn-menu"  ><i class="fas fa-plus-circle"></i> 新規追加</button> 
+          <button  onclick="window.location.href='?cat=6'" class="btn-menu"  ><i class="far fa-edit"></i> 情報更新.削除へ</button> 
+           <?}else if($_REQUEST["grid"]==3){?> 
+           <!-- 観光 -->
+          <h1 class="menu-title">（観光）運営管理画面</h1>
+          <button  onclick="window.location.href='?cat=7&ID=tour'" class="btn-menu"  ><i class="fas fa-plus-circle"></i> 新規追加</button> 
+          <button  onclick="window.location.href='?cat=8'" class="btn-menu"  ><i class="far fa-edit"></i> 情報更新.削除へ</button> 
+           <?}else if($_REQUEST["grid"]==4){?> 
+           <!-- News -->
+           <h1 class="menu-title">（NEWS）運営管理画面</h1>
+          <button  onclick="window.location.href='?cat=13&ID=news'" class="btn-menu"  ><i class="fas fa-plus-circle"></i> 新規追加</button> 
+          <button  onclick="window.location.href='?cat=14'" class="btn-menu"  ><i class="far fa-edit"></i> 情報更新.削除へ</button> 
+           <?}else if($_REQUEST["grid"]==5){?>
+           <!-- 時刻表  -->
+           <h1 class="menu-title">（時刻表）運営管理画面</h1>
+          <button  onclick="window.location.href='?cat=9&ID=time'" class="btn-menu"  ><i class="fas fa-plus-circle"></i> 新規追加</button> 
+          <button  onclick="window.location.href='?cat=10'" class="btn-menu"  ><i class="far fa-edit"></i> 情報更新.削除へ</button> 
+           <?}else if($_REQUEST["grid"]==6){?>
+           <!-- 時刻表  -->
+           <h1 class="menu-title">（夜遊び）運営管理画面</h1>
+          <button  onclick="window.location.href='?cat=11&ID=nightlife'" class="btn-menu"  ><i class="fas fa-plus-circle"></i> 新規追加</button> 
+          <button  onclick="window.location.href='?cat=12'" class="btn-menu"  ><i class="far fa-edit"></i> 情報更新.削除へ</button> 
+           <?}?>
+        
+      </div>
+     <div id="formFooter">
+    </div>
+      </div>
+    </div> 
+
+    <?}?>
+</div>
+  <?}else if($_SESSION["role"]==2){?>
+    <title> 会員管理画面</title>
+  
+  <div class="wrapper fadeInDown">
+    <div id="formContent-index">
+       <div class="main-menu">
+        
+          <h1 class="menu-title">会員管理画面</h1>
+          <button  onclick="window.location.href='?cat=2&ID=<?=$_SESSION["ID_Mater"]?>'" class="btn-menu"><i class="far fa-edit"></i> お店情報修正へ</button> 
+          <button  onclick="window.location.href='?cat=2'" class="btn-menu"  >News修正へ</button> 
+
+      </div>
+     <div id="formFooter">
+    </div>
+      </div>
+    </div>
+    <?}else if($_SESSION["role"]==3){?>
+  <title> 会員管理画面</title>
+  
+  <div class="wrapper fadeInDown">
+    <div id="formContent-index">
+       <div class="main-menu">
+        
+          <h1 class="menu-title">会員管理画面</h1>
+          <button  onclick="window.location.href='?cat=5&ID=<?=$_SESSION["ID_Mater"]?>'" class="btn-menu"><i class="far fa-edit"></i> 宿泊情報修正へ</button> 
+          <button  onclick="window.location.href='?cat=5'" class="btn-menu"  >News修正へ</button> 
+
+      </div>
+     <div id="formFooter">
+    </div>
+      </div>
+    </div>
+    <?}else if($_SESSION["role"]==4){?>
+  <title> 会員管理画面</title>
+  
+  <div class="wrapper fadeInDown">
+    <div id="formContent-index">
+       <div class="main-menu">
+        
+          <h1 class="menu-title">会員管理画面</h1>
+          <button  onclick="window.location.href='?cat=7&ID=<?=$_SESSION["ID_Mater"]?>'" class="btn-menu"><i class="far fa-edit"></i> 観光情報修正へ</button> 
+          <button  onclick="window.location.href='?cat=7'" class="btn-menu"  >News修正へ</button> 
+
+      </div>
+     <div id="formFooter">
+    </div>
+      </div>
+    </div>
+    <?}else if($_SESSION["role"]==5){?>
+  <title> 会員管理画面</title>
+  
+  <div class="wrapper fadeInDown">
+    <div id="formContent-index">
+       <div class="main-menu">
+        
+          <h1 class="menu-title">会員管理画面</h1>
+          <button  onclick="window.location.href='?cat=11&ID=<?=$_SESSION["ID_Mater"]?>'" class="btn-menu"><i class="far fa-edit"></i> 夜遊び情報修正へ</button> 
+          <button  onclick="window.location.href='?cat=11'" class="btn-menu"  >News修正へ</button> 
+
+      </div>
+     <div id="formFooter">
+    </div>
+      </div>
+    </div>
+     <?}else if($_SESSION["role"]==6){?>
+  <title> 会員管理画面</title>
+  
+  <div class="wrapper fadeInDown">
+    <div id="formContent-index">
+       <div class="main-menu">
+        
+          <h1 class="menu-title">会員管理画面</h1>
+          <button  onclick="window.location.href='?cat=13&ID=<?=$_SESSION["ID_Mater"]?>'" class="btn-menu"><i class="far fa-edit"></i> NEWS情報修正へ</button> 
+          <button  onclick="window.location.href='?cat=13'" class="btn-menu"  >News修正へ</button> 
+
+      </div>
+     <div id="formFooter">
+    </div>
+      </div>
+    </div>
+    <?}?>

@@ -1,0 +1,29 @@
+
+  <title>ログイン</title>
+  <link rel="stylesheet" href="./common/css/style_login.css">　
+  <!-- <h1>ログイン画面</h1> -->
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <!-- <div class="fadeIn first">
+    </div> -->
+
+    <!-- Login Form -->
+    <form method="POST" action="?cat=4">
+      <p class="hometext"><span style="font-size: 30px;">ログイン</span></p>
+      <input type="text" id="username" class="fadeIn second" name="username" placeholder="アカウント" value="<?=$username?>" >
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="パスワード" value="<?=$password?>" >
+       <?if($error_info){?><div class="error-info"><?=$error_info?></div><?}?>
+      <input type="submit" id="login"　name="login" class="fadeIn fourth" value="ログイン">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <!-- <a class="underlineHover" href="#">Forgot Password?</a> -->
+    </div>
+
+  </div>
+</div>
+ 

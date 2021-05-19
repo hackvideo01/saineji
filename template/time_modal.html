@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="jp">
+<meta charset="utf-8">
+<head>
+	<title>時刻表詳細</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="./common/js/qrcode.js"></script>
+	<script type="text/javascript" src="./common/js/qrcode.min.js"></script>
+
+	<!-- Fancybox -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" /> -->
+	<link rel="stylesheet" type="text/css" href="./common/css/jquery.fancybox.min.css">
+	<script type="text/javascript" src="./common/js/jquery.fancybox.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script> -->
+</head>
+<body style="background-color: #A6D4ED;text-align: center;overflow:hidden;border-radius: 10px;">
+<style type="text/css">
+	html, body {
+		  overscroll-behavior-x: none;
+		  font-family: Verdana, sans-serif;
+          -webkit-user-select: none; 
+          -webkit-touch-callout: none; 
+          -moz-user-select: none; 
+          -ms-user-select: none; 
+          user-select: none;    
+		}
+	.div-main{
+		height: 600px;
+		width: 100%;
+		margin: 0 auto;
+	}
+	.div-tow1{
+		display: flex;
+	}	
+	.div-tow2{
+		display: flex;
+	}	
+	img{
+		width: 110px;
+		height: 110px;
+		margin-top: 16px;
+		margin-left: 16px;
+	}
+	.shinkansen{
+		background-color: #008CD7;
+		border-radius: 20px;
+		/*padding: 10px;*/
+		height: 142px;
+		width: 142px;
+		text-align: center;
+		margin: 60px 0 0 55px;
+		display: flex;
+	}
+	.itosen{
+		background-color: #58B530;
+		border-radius: 20px;
+		height: 142px;
+		width: 142px;
+		text-align: center;
+		display: flex;
+		margin: 60px 0 0 360px;
+	}
+	.JR{
+		background-color: #F69600;
+		border-radius: 20px;
+		height: 142px;
+		width: 142px;
+		margin: 90px 0 0 55px;
+		text-align: center;
+		display: flex;
+	}
+	.bus{
+		background-color: #E17EA8;
+		border-radius: 20px;
+		height: 142px;
+		width: 142px;
+		text-align: center;
+		display: flex;
+		margin: 90px 0 0 360px;
+	}
+	button{
+		height: 45px;
+		width: 130px;
+		font-size: 20px;
+		font-weight: bold;
+		color: white;
+		outline: none;
+	}
+	
+	.shinkansen button{
+		background-color: #008CD7;
+		border: none;
+		border-radius: 8px;
+		margin: 19px 0 0 30px;
+	}
+	.shinkansen button:hover{
+		filter: brightness(130%);
+	}
+
+	.itosen button{
+		background-color: #58B530;
+		border: none;
+		border-radius: 8px;
+		margin: 19px 0 0 30px;
+	}
+	.itosen button:hover{
+		filter: brightness(130%);
+	}
+	.JR button{
+		background-color: #F69600;
+		border: none;
+		border-radius: 8px;
+		margin: 19px 0 0 30px;
+	}
+	.JR button:hover{
+		filter: brightness(130%);
+	}
+	.bus button{
+		background-color: #E17EA8;
+		border: none;
+		border-radius: 8px;
+		margin: 19px 0 0 30px;
+	}
+	.bus button:hover{
+		filter: brightness(130%);
+	}
+
+	#title_bus{
+		z-index: 10000; 
+		position: fixed;
+		top: 478px;
+		left: 605px;
+		font-size: 25px;
+		font-weight: bold;
+		color: white;
+	}
+
+	#title_itosen{
+		z-index: 10000; 
+		position: fixed;
+		left: 585px;
+		font-size: 25px;
+		font-weight: bold;
+		color: white;
+		top: 248px;
+	}
+	.fancybox-button, .fancybox-button:link, .fancybox-button:visited {
+    display: none;
+}
+/*@media only screen and (max-width: 810px) and (max-height: 1360px){
+	.itosen{
+		margin: 60px 0 0 226px;
+	}
+
+	.bus{
+		margin: 90px 0 0 226px;
+	}
+
+	#title_itosen{
+		left: 432px;
+	}
+
+	#title_bus{
+		left: 443px;
+	}
+}
+
+@media only screen and (max-width: 782px){
+	.itosen{
+		margin: 60px 0 0 198px;
+	}
+
+	.bus{
+		margin: 90px 0 0 198px;
+	}
+
+	#title_itosen{
+		left: 405px;
+	}
+
+	#title_bus{
+		left: 425px;
+	}
+}
+
+@media only screen and (max-width: 747px){
+	.itosen{
+		margin: 60px 0 0 176px;
+	}
+
+	.bus{
+		margin: 90px 0 0 176px;
+	}
+
+	#title_itosen{
+		left: 383px;
+	}
+
+	#title_bus{
+		left: 397px;
+	}
+}*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+
+/* General Buttons */
+#close {
+  width: 75px;
+  height: 40px;
+  background: linear-gradient(to bottom, #4eb5e5 0%,#389ed5 100%); /* W3C */
+  border: none;
+  border-radius: 22px;
+  position: relative;
+  border-bottom: 0px solid #2b8bc6;
+  color: #fbfbfb;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+  font-size: 15px;
+  text-align: center;
+  /*text-indent: 5px;*/
+  box-shadow: 0px 3px 0px 0px rgba(0,0,0,.2);
+  cursor: pointer;
+
+/* Just for presentation */  
+  display: block;
+  margin:0 auto;
+}
+#close:active {
+  box-shadow: 0px 2px 0px 0px rgba(0,0,0,.2);
+  top: 1px;
+}
+
+#Info-itosen{
+    border-radius:19px; 
+    width:150px;
+    height:50px;
+    background: linear-gradient(to left top, #58B530 50%, #5fbf00 50%);
+    border-style: none;
+    color:#fff;
+    font-size: 23px;
+    letter-spacing: 3px;
+    font-family: 'Lato';
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    padding: 0px;
+    overflow: hidden;
+    transition: all .5s;
+    box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+}
+#Info-itosen span{
+    position: absolute;
+    display: block;
+}
+#Info-itosen span:nth-child(1){
+    height: 3px;
+    width:200px;
+    top:0px;
+    left:-200px;
+    background: linear-gradient(to right, rgba(0,0,0,0), #f6e58d);
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span1 2s linear infinite;
+    animation-delay: 1s;
+}
+
+@keyframes span1{
+    0%{
+        left:-200px
+    }
+    100%{
+        left:200px;
+    }
+}
+#Info-itosen span:nth-child(2){
+    height: 70px;
+    width: 3px;
+    top:-70px;
+    right:0px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0), #f6e58d);
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span2 2s linear infinite;
+    animation-delay: 2s;
+}
+@keyframes span2{
+    0%{
+        top:-70px;
+    }
+    100%{
+        top:70px;
+    }
+}
+#Info-itosen span:nth-child(3){
+    height:3px;
+    width:200px;
+    right:-200px;
+    bottom: 0px;
+    background: linear-gradient(to left, rgba(0,0,0,0), #f6e58d);
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    animation: span3 2s linear infinite;
+    animation-delay: 3s;
+}
+@keyframes span3{
+    0%{
+        right:-200px;
+    }
+    100%{
+        right: 200px;
+    }
+}
+
+#Info-itosen span:nth-child(4){
+    height:70px;
+    width:3px;
+    bottom:-70px;
+    left:0px;
+    background: linear-gradient(to top, rgba(0,0,0,0), #f6e58d);
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
+    animation: span4 2s linear infinite;
+    animation-delay: 4s;
+}
+@keyframes span4{
+    0%{
+        bottom: -70px;
+    }
+    100%{
+        bottom:70px;
+    }
+}
+
+#Info-itosen:hover{
+    transition: all .5s;
+    transform: rotate(-3deg) scale(1.1);
+    box-shadow: 0px 3px 5px rgba(0,0,0,.4);
+}
+#Info-itosen:hover span{
+    animation-play-state: paused;
+}
+#Info-bus{
+    border-radius:19px; 
+    width:150px;
+    height:50px;
+    background: linear-gradient(to left top, #E17EA8 50%, #e48bb7 50%);
+    border-style: none;
+    color:#fff;
+    font-size: 23px;
+    letter-spacing: 3px;
+    font-family: 'Lato';
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    padding: 0px;
+    overflow: hidden;
+    transition: all .5s;
+    box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+}
+#Info-bus span{
+    position: absolute;
+    display: block;
+}
+#Info-bus span:nth-child(1){
+    height: 3px;
+    width:200px;
+    top:0px;
+    left:-200px;
+    background: linear-gradient(to right, rgba(0,0,0,0), #f6e58d);
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span1 2s linear infinite;
+    animation-delay: 1s;
+}
+
+@keyframes span1{
+    0%{
+        left:-200px
+    }
+    100%{
+        left:200px;
+    }
+}
+#Info-bus span:nth-child(2){
+    height: 70px;
+    width: 3px;
+    top:-70px;
+    right:0px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0), #f6e58d);
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span2 2s linear infinite;
+    animation-delay: 2s;
+}
+@keyframes span2{
+    0%{
+        top:-70px;
+    }
+    100%{
+        top:70px;
+    }
+}
+#Info-bus span:nth-child(3){
+    height:3px;
+    width:200px;
+    right:-200px;
+    bottom: 0px;
+    background: linear-gradient(to left, rgba(0,0,0,0), #f6e58d);
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    animation: span3 2s linear infinite;
+    animation-delay: 3s;
+}
+@keyframes span3{
+    0%{
+        right:-200px;
+    }
+    100%{
+        right: 200px;
+    }
+}
+
+#Info-bus span:nth-child(4){
+    height:70px;
+    width:3px;
+    bottom:-70px;
+    left:0px;
+    background: linear-gradient(to top, rgba(0,0,0,0), #f6e58d);
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
+    animation: span4 2s linear infinite;
+    animation-delay: 4s;
+}
+@keyframes span4{
+    0%{
+        bottom: -70px;
+    }
+    100%{
+        bottom:70px;
+    }
+}
+
+#Info-bus:hover{
+    transition: all .5s;
+    transform: rotate(-3deg) scale(1.1);
+    box-shadow: 0px 3px 5px rgba(0,0,0,.4);
+}
+#Info-bus:hover span{
+    animation-play-state: paused;
+}
+
+#Up-shinkansen{
+    border-radius:19px; 
+    width:150px;
+    height:50px;
+    background: linear-gradient(to left top, #008CD7 50%, #1281cf 50%);
+    border-style: none;
+    color:#fff;
+    font-size: 23px;
+    letter-spacing: 3px;
+    font-family: 'Lato';
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    padding: 0px;
+    overflow: hidden;
+    transition: all .5s;
+    box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+}
+#Up-shinkansen span{
+    position: absolute;
+    display: block;
+}
+#Up-shinkansen span:nth-child(1){
+    height: 3px;
+    width:200px;
+    top:0px;
+    left:-200px;
+    background: linear-gradient(to right, rgba(0,0,0,0), #f6e58d);
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span1 2s linear infinite;
+    animation-delay: 1s;
+}
+
+@keyframes span1{
+    0%{
+        left:-200px
+    }
+    100%{
+        left:200px;
+    }
+}
+#Up-shinkansen span:nth-child(2){
+    height: 70px;
+    width: 3px;
+    top:-70px;
+    right:0px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0), #f6e58d);
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span2 2s linear infinite;
+    animation-delay: 2s;
+}
+@keyframes span2{
+    0%{
+        top:-70px;
+    }
+    100%{
+        top:70px;
+    }
+}
+#Up-shinkansen span:nth-child(3){
+    height:3px;
+    width:200px;
+    right:-200px;
+    bottom: 0px;
+    background: linear-gradient(to left, rgba(0,0,0,0), #f6e58d);
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    animation: span3 2s linear infinite;
+    animation-delay: 3s;
+}
+@keyframes span3{
+    0%{
+        right:-200px;
+    }
+    100%{
+        right: 200px;
+    }
+}
+
+#Up-shinkansen span:nth-child(4){
+    height:70px;
+    width:3px;
+    bottom:-70px;
+    left:0px;
+    background: linear-gradient(to top, rgba(0,0,0,0), #f6e58d);
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
+    animation: span4 2s linear infinite;
+    animation-delay: 4s;
+}
+@keyframes span4{
+    0%{
+        bottom: -70px;
+    }
+    100%{
+        bottom:70px;
+    }
+}
+
+#Up-shinkansen:hover{
+    transition: all .5s;
+    transform: rotate(-3deg) scale(1.1);
+    box-shadow: 0px 3px 5px rgba(0,0,0,.4);
+}
+#Up-shinkansen:hover span{
+    animation-play-state: paused;
+}
+
+#Down-shinkansen{
+    border-radius:19px; 
+    width:150px;
+    height:50px;
+    background: linear-gradient(to left top, #008CD7 50%, #1281cf 50%);
+    border-style: none;
+    color:#fff;
+    font-size: 23px;
+    letter-spacing: 3px;
+    font-family: 'Lato';
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    padding: 0px;
+    overflow: hidden;
+    transition: all .5s;
+    box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+}
+#Down-shinkansen span{
+    position: absolute;
+    display: block;
+}
+#Down-shinkansen span:nth-child(1){
+    height: 3px;
+    width:200px;
+    top:0px;
+    left:-200px;
+    background: linear-gradient(to right, rgba(0,0,0,0), #f6e58d);
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span1 2s linear infinite;
+    animation-delay: 1s;
+}
+
+@keyframes span1{
+    0%{
+        left:-200px
+    }
+    100%{
+        left:200px;
+    }
+}
+#Down-shinkansen span:nth-child(2){
+    height: 70px;
+    width: 3px;
+    top:-70px;
+    right:0px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0), #f6e58d);
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span2 2s linear infinite;
+    animation-delay: 2s;
+}
+@keyframes span2{
+    0%{
+        top:-70px;
+    }
+    100%{
+        top:70px;
+    }
+}
+#Down-shinkansen span:nth-child(3){
+    height:3px;
+    width:200px;
+    right:-200px;
+    bottom: 0px;
+    background: linear-gradient(to left, rgba(0,0,0,0), #f6e58d);
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    animation: span3 2s linear infinite;
+    animation-delay: 3s;
+}
+@keyframes span3{
+    0%{
+        right:-200px;
+    }
+    100%{
+        right: 200px;
+    }
+}
+
+#Down-shinkansen span:nth-child(4){
+    height:70px;
+    width:3px;
+    bottom:-70px;
+    left:0px;
+    background: linear-gradient(to top, rgba(0,0,0,0), #f6e58d);
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
+    animation: span4 2s linear infinite;
+    animation-delay: 4s;
+}
+@keyframes span4{
+    0%{
+        bottom: -70px;
+    }
+    100%{
+        bottom:70px;
+    }
+}
+
+#Down-shinkansen:hover{
+    transition: all .5s;
+    transform: rotate(-3deg) scale(1.1);
+    box-shadow: 0px 3px 5px rgba(0,0,0,.4);
+}
+#Down-shinkansen:hover span{
+    animation-play-state: paused;
+}
+#Info-JR{
+    border-radius:19px; 
+    width:150px;
+    height:50px;
+    background: linear-gradient(to left top, #F69600 50%, #e68b05  50%);
+    border-style: none;
+    color:#fff;
+    font-size: 23px;
+    letter-spacing: 3px;
+    font-family: 'Lato';
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    padding: 0px;
+    overflow: hidden;
+    transition: all .5s;
+    box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+}
+#Info-JR span{
+    position: absolute;
+    display: block;
+}
+#Info-JR span:nth-child(1){
+    height: 3px;
+    width:200px;
+    top:0px;
+    left:-200px;
+    background: linear-gradient(to right, rgba(0,0,0,0), #f6e58d);
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span1 2s linear infinite;
+    animation-delay: 1s;
+}
+
+@keyframes span1{
+    0%{
+        left:-200px
+    }
+    100%{
+        left:200px;
+    }
+}
+#Info-JR span:nth-child(2){
+    height: 70px;
+    width: 3px;
+    top:-70px;
+    right:0px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0), #f6e58d);
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span2 2s linear infinite;
+    animation-delay: 2s;
+}
+@keyframes span2{
+    0%{
+        top:-70px;
+    }
+    100%{
+        top:70px;
+    }
+}
+#Info-JR span:nth-child(3){
+    height:3px;
+    width:200px;
+    right:-200px;
+    bottom: 0px;
+    background: linear-gradient(to left, rgba(0,0,0,0), #f6e58d);
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    animation: span3 2s linear infinite;
+    animation-delay: 3s;
+}
+@keyframes span3{
+    0%{
+        right:-200px;
+    }
+    100%{
+        right: 200px;
+    }
+}
+
+#Info-JR span:nth-child(4){
+    height:70px;
+    width:3px;
+    bottom:-70px;
+    left:0px;
+    background: linear-gradient(to top, rgba(0,0,0,0), #f6e58d);
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
+    animation: span4 2s linear infinite;
+    animation-delay: 4s;
+}
+@keyframes span4{
+    0%{
+        bottom: -70px;
+    }
+    100%{
+        bottom:70px;
+    }
+}
+
+#Info-JR:hover{
+    transition: all .5s;
+    transform: rotate(-3deg) scale(1.1);
+    box-shadow: 0px 3px 5px rgba(0,0,0,.4);
+}
+#Info-JR:hover span{
+    animation-play-state: paused;
+}
+
+#close1 {
+  border-radius: 50%;
+  padding: 0.5em;
+  width: 43px;
+  height: 43px;
+  border: 2px solid white;
+  color: white;
+  position: relative;
+  right: -47%;
+  top:9px;
+  z-index: 1;
+  background-color: #D0D0D2;
+}
+#close1:hover {
+  border: 2px solid white;
+  background-color: red;
+  color: #ffffff;
+}
+
+#close1::before {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: #ffffff;
+  width: 5px;
+  height:20px;
+  left: 17px;
+  top: 9px;
+  bottom: 5px;
+  transform: rotate(45deg);
+}
+#close1::after {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: #ffffff;
+  height: 5px;
+  width: 20px;
+  top:17px;
+  left: 9px;
+  transform: rotate(45deg);
+}
+</style>
+<button id="close1" onclick="javascript:parent.jQuery.fancybox.close();"></button>
+<div style="z-index: 0;">
+	<div id="div-main" class="div-main">
+		<div id="div-tow1" class="div-tow1">
+			<div style="z-index: 1" id="shinkansen" class="shinkansen">
+		    	<img src="./common/images/time/shinkansen.png">
+		    	<div>
+			    	<!-- <button type="button" id="Up-shinkansen">上り</button>
+			    	<button type="button" id="Down-shinkansen">下り</button> -->
+			    	<button id="Up-shinkansen">
+					    上り
+					    <span></span>
+					    <span></span>
+					    <span></span>
+					    <span></span>
+					</button>
+					<button id="Down-shinkansen">
+					    下り
+					    <span></span>
+					    <span></span>
+					    <span></span>
+					    <span></span>
+					</button>
+
+					<p id="title_shinkansen" style="z-index: 10000; position: fixed;left: 90px;font-size: 25px;font-weight: bold;color: white;">新 幹 線</p>
+		    	</div>
+			</div>
+
+			<div id="itosen" class="itosen">
+				<img src="./common/images/time/itosen.png">
+				<div>
+			    	<button id="Info-itosen">
+					    情報を見る
+					    <span></span>
+					    <span></span>
+					    <span></span>
+					    <span></span>
+					</button>
+			    	<p id="title_itosen" style="">伊 東 線</p>
+		    	</div>
+			</div>
+		</div>
+
+		<div id="div-tow2" class="div-tow2">
+			<div id="JR" class="JR">
+				<img src="./common/images/time/JR.png">
+				<div>
+			    	<button id="Info-JR">
+					    情報を見る
+					    <span></span>
+					    <span></span>
+					    <span></span>
+					    <span></span>
+					</button>
+			    	<!-- <button id="Info-JR">情報を見る</button> -->
+			    	<p id="title_JR" style="z-index: 10000; position: fixed;left: 100px;font-size: 25px;top:478px;font-weight: bold;color: white;">JR 線</p>
+		    	</div>
+			</div>
+
+			<div id="bus" class="bus">
+				<img src="./common/images/time/bus.png">  
+				<div>
+					<!-- <button id="Info-bus">情報を見る</button> -->
+					<button id="Info-bus">
+					    情報を見る
+					    <span></span>
+					    <span></span>
+					    <span></span>
+					    <span></span>
+					</button>
+					<p id="title_bus">バ ス</p>
+				</div>
+			</div>
+		</div>
+	</div>
+<button id="close" onclick="javascript:parent.jQuery.fancybox.close();">閉じる</button>
+</div>
+    <script type="text/javascript">
+    	$('#Up-shinkansen').on('click',function(){
+    		settime("shinkansen","up");
+    	});
+
+    	$('#Down-shinkansen').on('click',function(){
+    		settime("shinkansen","down");
+    	});
+
+    	// $('#Up-itosen').on('click',function(){
+    	// 	settime("itosen","up");
+    	// });
+
+    	$('#Info-itosen').on('click',function(){
+    		settime("itosen","infoItosen");
+    	});
+
+    	$('#Info-JR').on('click',function(){
+    		settime("JR","infoJr");
+    	});
+
+    	// $('#Down-JR').on('click',function(){
+    	// 	settime("JR","down");
+    	// });
+
+    	$('#Info-bus').on('click',function(){
+    		settime("bus","infoBus");
+    	});
+
+    	function settime(name,direction){
+    		var url1 = "./time_qrcode.php?Category_id=";
+    		var direction = direction;
+    	 $.ajax({
+		    type: 'POST',
+		    url: 'gettime.php',
+		    data: {
+		    	name: name,
+		    	direction:direction,
+		    },
+		    success: function(msg) {
+		      var time =[];
+		      if(msg!=""){
+		      	 time = JSON.parse(msg); 
+		      }
+		      // for (var i = 0; i< time.lenght;i++) {
+		      	var category_id = time[0].category_id;
+		      	var qrcode = time[0].qr;
+		      	var url2 = url1 +category_id+"&direction="+direction;
+		      	// }
+		     //  	var form =
+							// 	'<h1>'+category+'</h1>'+
+							// '<div style="display: flex; margin-top: 20px;padding-bottom: 20px">'+
+							// 	'<input id="qrcode_time" type="text" name="" hidden="hidden" value="'+qrcode+'">'+
+							// 	'<div style="margin: 0 auto;padding: 15px;background-color:white;" id="qr_time"></div>'+
+							// '</div>'
+							// ;
+		   	$.fancybox.open({
+		        src  : url2,
+		        type : 'iframe',
+		        opts : {
+		          afterShow : function( instance, current ) {
+		            console.info( 'done!' );
+		          }
+		        }
+		      });
+
+		    }
+		  });
+    }
+    </script>
+
+<script type="text/javascript">
+  $(document).bind("contextmenu",function(e){
+  return false;
+    });
+</script>
+</body>
+</html>

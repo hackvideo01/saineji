@@ -1,0 +1,105 @@
+	.table-bordered {
+	/*border: 2px solid #2f528f;*/
+	border-collapse: collapse;
+	background: #ffffff;
+	}
+	/*tr{border: 1px solid #1290ea;}*/
+	.container {
+	font-family: 'Noto Sans', sans-serif;
+	margin-top: 30px;
+	width: 125%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	height: 80%;
+	}
+	.table-bordered>tbody>tr>td{border: 1px solid #1290ea;vertical-align: top; text-align: center;}
+	h3 {
+	margin-bottom: 30px;
+	}
+	th {
+	height: 30px;
+	text-align: center; border: 1px solid #1290ea;
+	}
+	td {
+	height: 6vw; border: 2px solid #1290ea;
+	}
+	.today {
+	background: orange;
+	}
+	th:nth-of-type(1), td:nth-of-type(1) {
+	color: red;
+	}
+	th:nth-of-type(7), td:nth-of-type(7) {
+	color: blue;
+	}
+	table{
+	width: 80%;
+	max-width: 100%;
+	margin-bottom: 5px;
+	}
+	.fas{color: orange;}
+	.status0{
+	font-family: "ＭＳ Ｐゴシック", Osaka, "ヒラギノ角ゴ Pro W3";
+	font-size: 12px;
+	text-align: center;
+	line-height: 1.9em;
+	padding: 0;
+	background:'#ffccff';
+	}
+	.status1{
+	font-family: "ＭＳ Ｐゴシック", Osaka, "ヒラギノ角ゴ Pro W3";
+	font-size: 12px;
+	text-align: center;
+	background:'#9dc3e6';
+	}
+	.status9{
+	font-family: "ＭＳ Ｐゴシック", Osaka, "ヒラギノ角ゴ Pro W3";
+	font-size: 12px;
+	text-align: center;
+	background:'#fff2cc';
+	}
+	.inputdate{margin: 0px 0px 0px 10px;text-align: left;font-size: 1em;}
+	.val_status0{font-size: px;color: #f63737;text-align: center;}
+	.val_status1{font-size: px;color: black;text-align: center;}
+	.val_status9{font-size: px;color: #f85f05;text-align: center;}
+	#viewDate{font-size: 20px;  font-family: 'Noto Sans', sans-serif;}
+	/*// style o and x*/
+	.my-parts {
+	/*display: inline-block;*/
+	width: 30px;
+	height: 15px;
+	position: relative;
+	/*border: 1px solid rgba(0,0,0,.1);*/
+	cursor: pointer;
+	}
+	.my-parts span::before,
+	.my-parts span::after {
+	display: block;
+	content: "";
+	position: absolute;
+	top: 70%;
+	left: 100%;
+	width: 84%;
+	height: 16%;
+	margin: -8% 0 0 -42%;
+	background: #0f0f0f;
+	}
+	.my-parts span::before {
+	transform: rotate(-45deg);
+	}
+	.my-parts span::after {
+	transform: rotate(45deg);
+	}
+	.circle{
+	display: inline-block;
+	width: 27px;
+	height: 23px;
+	text-align:center;
+	/*line-height: 80px;*/
+	border-radius: 50%;
+	border: solid 2px #f63737;
+	}
+	.datenow{margin: 0px 0px 0px 10px;text-align: left;font-size: 14px;color: #104675;  background: #c8ef8ba6;}
+	a{color: #0720d0;}

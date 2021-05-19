@@ -1,0 +1,117 @@
+<!DOCTYPE html >
+<meta charset="UTF-8">
+<html lang="jp">
+<head>
+  <title>夜遊びカテゴリ</title>
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" /> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" type="text/css" href="./common/css/category_nightlife.css">
+  <!-- <script type="text/javascript" src="./common/js/slide_image-touch.js"></script> -->
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" /> -->
+  <script type="text/JavaScript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
+
+  <!-- Fancy box -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css" integrity="sha512-nNlU0WK2QfKsuEmdcTwkeh+lhGs6uyOxuUs+n+0oXSYDok5qy0EI0lt01ZynHq6+p/tbgpZ7P+yUb+r71wqdXg==" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.js" integrity="sha512-j7/1CJweOskkQiS5RD9W8zhEG9D9vpgByNGxPIqkO5KrXrwyDAroM9aQ9w8J7oRqwxGyz429hPVk/zR6IOMtSA==" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="./common/css/jquery.fancybox.min.css">
+  <script type="text/javascript" src="./common/js/jquery.fancybox.min.js"></script>
+
+  <!-- Library MarkerWithLabel -->
+  <script src="https://unpkg.com/@googlemaps/markerwithlabel/dist/index.min.js"></script>
+
+</head>
+<body>
+  
+    <!-- content page -->
+<div id="content" class="content">
+  <div id="category">
+      <div id="header" class="header">
+      </div>
+      <!-- Categoly Nightlife -->
+      <div id="Categoly_nightlife">  
+        <table>
+          <tr>
+            <td class="Category_nl1"><img id="Category_nl1" src="./common/images/NightlifeCategory/kyabakura.png" style="width:100%; height: 90px;"></td>
+            <td class="Category_nl2"><img id="Category_nl2" src="./common/images/NightlifeCategory/snack.png" style="width:100%; height: 90px;"></td>
+          </tr>
+          <tr>
+            <td class="Category_nl3"><img id="Category_nl3" src="./common/images/NightlifeCategory/bar.png" style="width:100%; height: 90px;"></td>
+            <td class="Category_nl4"><img id="Category_nl4" src="./common/images/NightlifeCategory/other.png" style="width:100%; height: 90px;"></td>
+          </tr>
+          <tr>
+            <td style="text-align: end" colspan="2">
+              <button id="closeButton" onclick="javascript:parent.jQuery.fancybox.close();">
+                TOPに戻る
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+</div>
+  <div style="z-index: 99;position: absolute; background: none" id="btnchange">
+    <button  onclick="changelocation(this)" value="1" style="background: none;border: none;"><img style="margin-top: -80px;margin-left: -8px;position: absolute;" src="./common/icon/rotate.gif"></button>
+  </div>
+      <div id="map" class="map" >
+
+      </div>
+
+    </div>
+<script type="text/javascript">
+
+	// function change location
+function changelocation(btnvalue){
+  if (btnvalue.value ==1) {
+    $('#map').insertBefore($('#category'));
+    $('#btnchange').insertBefore($('#category'));
+    btnvalue.value = 0;
+  }else{
+    $('#category').insertBefore($('#map'));
+     $('#btnchange').insertBefore($('#map'));
+    btnvalue.value = 1;
+  }
+ }
+
+ $('#Category_nl1').on("click",function(){
+    // alert("ok");
+    setMarkers("drink",1);
+    });
+          $('#Category_nl2').on("click",function(){
+    // alert("ok");
+    setMarkers("drink",2);
+    });
+          $('#Category_nl3').on("click",function(){
+    // alert("ok");
+    setMarkers("drink",3);
+    });
+          $('#Category_nl4').on("click",function(){
+    // alert("ok");
+    setMarkers("drink",4);
+    });
+
+     $(document).bind("contextmenu",function(e){
+      return false;
+    });     
+
+</script>
+  <!-- key API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqVs5DU4Nm_m7wDBK894Bui6-mfmQ2xbo&callback=initMap&libraries=&v=weekly&language=ja&region=JP" async>
+  </script>
+  <!-- JS link in foder "js"  -->
+    <script type="text/javascript" src="./common/js/catetgory.js"></script>
+    <script type="text/javascript" src="./common/js/category_maps.js"></script>
+
+<script type="text/javascript">
+  $(document).bind("contextmenu",function(e){
+  return false;
+    });
+</script>    
+</body>
+</html>

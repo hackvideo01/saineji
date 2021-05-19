@@ -1,0 +1,32 @@
+
+  .update{
+	margin-top: 50px;
+	text-align: center;
+	color: #01B0EF;
+}
+
+ /*header CSS*/
+  .logo{
+ 	margin: 5px;
+ 	padding: 10px;
+ 	background-color: #01B0EF;
+ 	color: white;
+ 	font-weight: bold;
+ }
+
+ .hr_header{
+ 	background-color: #C7CBD1;
+ 	width: 100%;
+ 	border: 1px solid #C7CBD1;
+ }
+
+  .hr_footer{
+  	background-color: #C7CBD1;
+ 	width: 100%;
+ 	border: 1px solid #C7CBD1;
+  }
+  .footer{
+  	text-align: center;
+  	position: relative;
+  }
+ 

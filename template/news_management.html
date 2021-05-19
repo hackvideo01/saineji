@@ -1,0 +1,312 @@
+<head>
+  <title>NEWS管理画面</title>
+</head>
+
+<div class="wrapper-view">
+  <div class="content"> 
+    <link rel="stylesheet" href="./common/css/resp_table.css">
+    <script>
+      $(document).ready(function() {
+        $(".sort-DEFAULT").on('click', function(){
+          col = $(this).attr('sort-tag');
+          $('#col').val(col);
+          $('#order').val('ASC');
+          $('#selector').submit();
+        });
+        $(".sort-ASC").on('click', function(){
+          col = $(this).attr('sort-tag');
+          $('#col').val(col);
+          $('#order').val('DESC');
+          $('#selector').submit();
+        });
+        $(".sort-DESC").on('click', function(){
+          col = $(this).attr('sort-tag');
+          $('#col').val(col);
+          $('#order').val('ASC');
+          $('#selector').submit();
+        });
+
+      });
+      function deleteNews(id){
+        
+        var result = confirm("このNEWSを削除したいですか?");
+        if (result) {
+            var action = "delete";
+           $.post("update_news.php",
+            {
+              changestatus: status.value,
+              id: id,
+              action:action
+            },
+            function(data,status){
+              if(status=="success"){
+                alert("データを削除されました。");
+                location.reload();
+              }else{
+                alert("データを削除できませんでした。管理者がご連絡ください。");
+              }
+            });
+        }
+       
+      };
+
+      function gotodetail(id){
+        window.location = "?cat=13&ID="+id;
+      }
+      function downloadimage(id){
+      // var files = e.target.files;
+     //    var path = files[0].webkitRelativePath;
+     //    var Folder = path.split("/");
+     //    alert(Folder[0]);
+        var action = "saveimg";
+        $.post("update_status.php",
+          {
+            id: id,
+            action:action
+          },
+          function(data,status){
+            if(status=="success"){
+              if(data!=""){
+              }
+            }
+          });
+      }
+    </script>
+    <style type="text/css">
+      table th{
+          background-color: #ff9800 !important;
+
+      }
+      a{
+        color: #0F5995 !important;
+      }
+      h1{
+        padding-right: 0px;
+        margin: 10px;
+      }
+      table th, table td {
+        font-size: 1.5em;
+      }
+      .sch_box{ display: flex;
+        width: 100%;
+        /*text-align:right;*/
+        margin-right:50px;}
+      .sch_box span{
+         font-size: 18px;
+         margin: 10px;
+      }
+      #status{
+        width: 150px;
+      }
+      #searchBtn2{
+        margin: 0px;
+        font-size: 2em;
+        font-size: 1.3em !important;
+        border-radius: 30px;
+        padding:5px 30px 5px;
+        color: white;
+        background: #007bff;
+        cursor: pointer;
+      }
+      .divback{
+        width: 50%;
+        text-align: left;
+        padding-left: 30px;
+      }
+      .divsearch{
+        width: 100%;
+        display: flex;
+        font-size: 1.5em;
+        margin: 15px;
+      }
+      .btn-back{
+        margin: 10px;
+
+      }
+      td a {
+        cursor: pointer;
+      }
+      #status{
+        width: 110px;
+        font-size: 14px;
+        margin-top: 8px;
+      }
+       
+      input[type="file"] {
+          position: fixed;
+          right: 100%;
+          bottom: 100%;
+      }
+      .custom-file-upload {
+          border: 1px solid #ccc;
+          display: inline-block;
+          padding: 6px 12px;
+          cursor: pointer;
+      }
+    
+      #selector{
+        width: 100%;
+      }
+      .divinput-search{
+        width: 35%; 
+      }
+      .divinput-search label{
+        width: 30%;
+        margin: 5px;
+        right: 1px;
+        text-align: right;
+      }
+      .divinput-search input{
+        width: 60%;
+        padding: 5px;
+        border: 1px solid #c1c1c1;
+        background: white;
+        text-align: left;
+      }
+      .divbutton-search{
+        text-align: center;
+      }
+      .button_find{
+        /*display: flex;*/
+        text-align: center;
+        justify-content: center;
+      }
+
+      #find{
+        background-color: #007bff;
+        color: white;
+        border-radius: 20px;
+        padding: 5px 30px 5px;
+        font-size: 1.3em !important;
+        border: none;
+        outline: none;
+        cursor: pointer;
+      }
+
+      .error_find{
+        color: red;
+        /*text-align: center;*/
+      }
+       @media screen and (max-width:800px) {
+
+         .divinput-search{
+          width: 100%; 
+        }
+         .sch_box{
+           padding-bottom: 10px;
+         }
+        .divsearch{
+          width: 100%;
+          display: block;
+        }
+      }
+      light-theme a, .light-theme span {
+        font-size: 17px;
+      }
+      @media screen and (max-width:414px) {
+         .sch_box{
+           padding-bottom: 10px;
+         }
+        .divsearch{
+          width: 100%;
+             
+        }
+        .divinput-search input{
+          margin-bottom: 10px;
+          margin-right: 2px;
+        }
+      }
+      .view-img{
+        width: 160px !important;
+        height: 120px !important;
+      }
+      img{
+        width: 160px;
+        height: 120px;
+      }
+    </style>
+     <h1 style="text-align: center;color: #0090D5;">NEWS</h1>
+    <div class="button_find">
+     <?if($num_row==0&&$check_sql!=0){?>
+      <p class="error_find">検索の情報が違っています。</p>
+      <button onclick="location.href='./?cat=14'" id="find">再検索</button>
+     <?}?>
+    </div>
+    <div class="sch_box">
+       <form id="selector" name="selector" method="POST" action="<?=$base_url?>">
+      <div class="divsearch">
+          <div class="divinput-search">
+            <label>NEWS名</label>
+            <input type="text"  name="Title" value="<?=$_REQUEST["Title"]?>">  
+          </div>
+          <!-- <div class="divinput-search">
+            <label>住所</label>
+            <input type="text" class="input-search" name="Address" value="<?=$_REQUEST["Address"]?>">  
+          </div> -->
+          <div class="divbutton-search">
+            <input type="submit" value="検索" alt="検索" name="searchBtn2" id="searchBtn2" />
+            <input type="hidden" id="col" name="col" value="">
+            <input type="hidden" id="order" name="order" value="">
+          </div>
+        </div> 
+      </form>
+    </div>
+    <form  id="selector" name="selector"  method="POST" action="<?=$base_url?>" >
+      <input type="hidden" id="col" name="col" value="">
+      <input type="hidden" id="order" name="order" value="">
+    </form>
+
+    <?if($pagejs){?><?=$pagejs?><?}?>
+    <div class="pager" id="paging"></div>
+
+    <?if($pcnt){?>
+    <?$v=0;?>
+    <?for($i=0;$i<=$pcnt;$i++){?>
+      <table class="selection t_list" id="page-<?=$i+1?>">
+        <thead>
+          <tr>
+            <th scope="col" style="width:5%;">削除</th>
+            <th scope="col" style="width:5%;">編集</th>
+            <th sort-tag="Title" class="sort-<?if($_REQUEST['col'] ==  "Title"){echo $_REQUEST['order'];}else{?>DEFAULT<?}?>" scope="col" style="width:15%;">NEWS名</th>
+            <th sort-tag="QR" class="sort-<?if($_REQUEST['col'] ==  "QR"){echo $_REQUEST['order'];}else{?>DEFAULT<?}?>" scope="col" style="width:20%;">ホームページURL</th>
+            <th sort-tag="FromDay" class="sort-<?if($_REQUEST['col'] ==  "FromDay"){echo $_REQUEST['order'];}else{?>DEFAULT<?}?>" scope="col" style="width:8%;">掲載開始日</th>
+            <th sort-tag="ToDay" class="sort-<?if($_REQUEST['col'] ==  "ToDay"){echo $_REQUEST['order'];}else{?>DEFAULT<?}?>" scope="col" style="width:8%;">掲載終了日</th>
+            <th scope="col" style="width:1%;">イラスト</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <?if($rec){?>
+          <?for($j=0;$j<$vcnt;$j++){?>
+            <?if($rec[$v]["ID"]){?>
+          <tr>
+            <td data-label="削除" style="text-align: center;">
+              <a onclick="deleteNews(<?echo $rec[$v]["ID"]?>)"><i class="fa fa-trash-alt" aria-hidden="true"></i></a>
+              <input type="hidden" id="ID" value="<?=$rec[$v]["ID"]?>">
+            </td>
+            <td data-label="編集" style="text-align: center;">
+               <a onclick="gotodetail(<?echo $rec[$v]["ID"]?>)"><i class="fas fa-edit"></i></a>
+              <input type="hidden" id="ID" value="<?=$rec[$v]["ID"]?>">
+            </td>
+            
+            <td data-label="NEWS名"><?=$rec[$v]["Title"]?></td>
+            <td data-label="ホームページURL"><?=$rec[$v]["QR"]?></td>
+            <td data-label="掲載開始日"><?=$rec[$v]["FromDay"]?></td>
+            <td data-label="掲載終了日"><?=$rec[$v]["ToDay"]?></td>
+            <td data-label="イラスト">
+              <?if($rec[$v]["UploadPath"]!=""){?>
+                <div class="view-img"> <img src="<?=$rec[$v]["UploadPath"]?>"></div>
+              <?}?>
+           </td>
+          </tr>
+          <?}?>
+          <?$v=$v+1;?>
+          <?}?>
+          <?}?>
+        </tbody>
+      </table>
+    <?}?>
+    <?}?>
+  </div>
+</div>
+ 

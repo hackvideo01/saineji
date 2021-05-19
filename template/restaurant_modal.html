@@ -1,0 +1,305 @@
+	<!DOCTYPE html>
+	<html lang="jp">
+	<meta charset="utf-8">
+	<head>
+		<title>飲食店詳細</title>
+		<script type="text/javascript" src="./common/js/qrcode.js"></script>
+		<script type="text/javascript" src="./common/js/qrcode.min.js"></script>
+		<script type="text/JavaScript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
+	</head>
+	<body onload=onReadyRestaurant() style="background-color: #ffffff;text-align: center;overflow:hidden;border-radius: 50px;">
+	<style type="text/css">
+		html, body {
+		  overscroll-behavior-x: none;
+		  font-family: Verdana, sans-serif;
+		  -webkit-user-select: none; 
+		  -webkit-touch-callout: none; 
+		  -moz-user-select: none; 
+		  -ms-user-select: none; 
+		  user-select: none;    
+		}
+		table , td, th {
+			/*border-radius: 5px;
+			border: 1px solid #595959;*/
+			border-collapse: collapse;
+			background-color: white;
+			margin: 20px auto 0;
+			width: 80%;
+			text-align: left;
+		}
+		td, th {
+			padding: 3px;
+			height: 42px;
+			font-size: 20px;
+		}
+		.table2 tr:nth-child(1) { border-bottom-style: dotted; }
+		.table2 tr:nth-child(2) { border-bottom-style: dotted; }
+		.table2 tr:nth-child(3) { border-bottom-style: dotted; }
+		th {
+			width: 20%;
+			background: #ffffff;
+		}
+		td{
+			width: 80%;
+			text-align: left;
+			padding: 5px;
+		}
+		.even {
+			background: #fbf8f0;
+		}
+		.odd {
+			background: #fefcf9;
+		}
+		#close2{
+			margin: 60px 100px 0;
+		}
+		.introduce {
+			font-size: 20px;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+	html, body {
+	  overscroll-behavior-x: none;
+	  font-family: Verdana, sans-serif;
+	}
+	.mySlides {
+		display: none;
+	}
+	img {
+		vertical-align: middle;
+	}
+
+	/* Slideshow container */
+	.slideshow-container {
+	  /*max-width: 1000px;*/
+	  position: relative;
+	  margin: auto;
+	}
+
+	/* The dots/bullets/indicators */
+	.dot {
+	  height: 15px;
+	  width: 15px;
+	  margin: 0 2px;
+	  background-color: #bbb;
+	  border-radius: 50%;
+	  display: inline-block;
+	  transition: background-color 0.6s ease;
+	}
+
+	.active {
+	  background-color: #717171;
+	}
+
+	/* Fading animation */
+	.fade {
+	  -webkit-animation-name: fade;
+	  -webkit-animation-duration: 1.5s;
+	  animation-name: fade;
+	  animation-duration: 1.5s;
+	}
+
+	@-webkit-keyframes fade {
+	  from {opacity: .4} 
+	  to {opacity: 1}
+	}
+
+	@keyframes fade {
+	  from {opacity: .4} 
+	  to {opacity: 1}
+	}
+
+	/* On smaller screens, decrease text size */
+	@media only screen and (max-width: 300px) {
+	  .text {font-size: 11px}
+	}
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+
+/* General Buttons */
+#close2 {
+  width: 75px;
+  height: 40px;
+  background: linear-gradient(to bottom, #4eb5e5 0%,#389ed5 100%); /* W3C */
+  border: none;
+  border-radius: 22px;
+  position: relative;
+  border-bottom: 0px solid #2b8bc6;
+  color: #fbfbfb;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+  font-size: 15px;
+  text-align: center;
+  /*text-indent: 5px;*/
+  box-shadow: 0px 3px 0px 0px rgba(0,0,0,.2);
+  cursor: pointer;
+  bottom: 10px;
+
+/* Just for presentation */  
+  display: block;
+  margin:0 auto;
+}
+#close2:active {
+  box-shadow: 0px 2px 0px 0px rgba(0,0,0,.2);
+  top: 1px;
+}
+
+/*button:after {
+  content: "";
+  width: 0;
+  height: 0;
+  display: block;
+  border-top: 20px solid #187dbc;
+  border-bottom: 20px solid #187dbc;
+  border-left: 16px solid transparent;
+  border-right: 20px solid #187dbc;
+  position: absolute;
+  opacity: 0.6; 
+  right: 0;
+  top: 0;
+  border-radius: 0 22px 22px 0;  
+}
+*/
+.fancybox-toolbar{
+		display: none;
+	}
+#close1 {
+  border-radius: 50%;
+  padding: 0.5em;
+  width: 43px;
+  height: 43px;
+  border: 2px solid white;
+  color: white;
+  position: relative;
+  right: -47%;
+  top:10px;
+  background-color: #D0D0D2;
+}
+#close1:hover {
+  border: 2px solid white;
+  background-color: red;
+  color: #ffffff;
+}
+
+#close1::before {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: #ffffff;
+  width: 5px;
+  height:20px;
+  left: 17px;
+  top: 9px;
+  bottom: 5px;
+  transform: rotate(45deg);
+}
+#close1::after {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: #ffffff;
+  height: 5px;
+  width: 20px;
+  top:17px;
+  left: 9px;
+  transform: rotate(45deg);
+}
+
+	</style>
+	<!-- <button onclick="javascript:parent.jQuery.fancybox.close();">閉じる</button> -->
+	<div class="view-modal">
+	<button id="close1" onclick="javascript:parent.jQuery.fancybox.close();"></button>
+	<form>
+		<?if(is_countable($restaurant_detail)){?>
+	    	<?foreach ($restaurant_detail as $key => $value) {?>
+			<!-- <br> -->
+
+			<?foreach ($restaurant_img as $key => $img) {?>
+			<div class="slideshow-container">
+				<div class="mySlides fade">
+					<img style="margin: 0 auto; height: 500px;width: 80%; border-radius: 30px;" src="<?=$img['UploadPath'];?>">
+				</div>
+			</div>	
+
+			<div style="text-align:center; display: none">
+			  <span class="dot"></span> 
+			  <span class="dot"></span> 
+			  <span class="dot"></span> 
+			</div>
+			<?}?>
+			<script>
+			var slideIndex = 0;
+			showSlides();
+
+			function showSlides() {
+			  var i;
+			  var slides = document.getElementsByClassName("mySlides");
+			  var dots = document.getElementsByClassName("dot");
+			  for (i = 0; i < slides.length; i++) {
+			    slides[i].style.display = "none";  
+			  }
+			  slideIndex++;
+			  if (slideIndex > slides.length) {slideIndex = 1}    
+			  for (i = 0; i < dots.length; i++) {
+			    dots[i].className = dots[i].className.replace(" active", "");
+			  }
+			  slides[slideIndex-1].style.display = "block";  
+			  dots[slideIndex-1].className += " active";
+			  setTimeout(showSlides, 5000); // Change image every 5 seconds
+			}
+			</script>
+			<h1 style="text-align: center;color: #333333;"><?=$value['Name']?></h1>
+			<table>
+			<tr>
+				<td class="introduce" disabled><?=$value['Introduce_cm']?></td>
+			</tr>
+		</table>
+
+		<table class="table2">
+			<tbody>
+				<tr>
+					<th>住　所</th>
+					<td><?=$value['Address']?></td>
+				</tr>
+				<tr>
+					<th>営業時間</th>
+					<td><?=$value['Time_work']?></td>
+				</tr>
+				<tr>
+					<th>電話番号</th>
+					<td><?=$value['Tel']?></td>
+				</tr>
+				<?if($value['Text1']!="" || $value['Text2'] !="" || $value['Text3'] !="" || $value['Text4'] !="" || $value['Text5'] !="" ){?>
+				<tr>
+					<th>お勧め</th>
+					<td><?=$value['Text1']?><br>
+						<?=$value['Text2']?><br>
+						<?=$value['Text3']?><br>
+						<?=$value['Text4']?><br>
+						<?=$value['Text5']?><br>
+					</td>
+				</tr>
+				<?}?>
+			</tbody>
+		</table>
+		<div style="display: flex; margin-top: 20px;padding-bottom: 20px">
+			<input id="qrcode_restaurant1" type="text" name="" hidden="hidden" value="<?=$value['QR_1']?>">
+			<div style="margin: 0 auto;padding: 15px;background-color:white;" id="qr_restaurant1"></div>
+			<input id="qrcode_restaurant2" type="text" name="" hidden="hidden" value="<?=$value['QR_2']?>">
+			<div style="margin: 0 auto;padding: 15px;background-color:white;" id="qr_restaurant2"></div>
+		</div>
+	<?}?>
+	<?}?>
+	<p style="font-size: 20px;font-weight: bold;">QRコードを読み取るとお店の詳細情報が見れます</p>
+	</form>
+	</div>
+	<button id="close2" onclick="javascript:parent.jQuery.fancybox.close();">閉じる</button>
+	<script type="text/javascript">
+		 $(document).bind("contextmenu",function(e){
+      return false;
+    });     
+	</script>
+	</body>
+	</html>

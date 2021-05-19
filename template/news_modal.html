@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="jp">
+<meta charset="utf-8">
+<head>
+	<title>NEWS詳細</title>
+	<script type="text/javascript" src="./common/js/qrcode.js"></script>
+	<script type="text/javascript" src="./common/js/qrcode.min.js"></script>
+  <script type="text/JavaScript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
+  
+  <!-- Fancybox -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="./common/css/jquery.fancybox.min.css">
+  <script type="text/javascript" src="./common/js/jquery.fancybox.min.js"></script>
+
+	<style type="text/css">
+    html, body {
+      overscroll-behavior-x: none;
+      font-family: Verdana, sans-serif;
+      -webkit-user-select: none; 
+      -webkit-touch-callout: none; 
+      -moz-user-select: none; 
+      -ms-user-select: none; 
+      user-select: none;    
+    }
+    
+    #newsContain{
+      display: flex;
+      width: 100%;
+    }
+
+    #newsTop{
+      display: flex;
+      background-color: #47A2F1;
+      border-top-right-radius: 42px;
+      border-top-left-radius: 42px;
+    }
+
+    #newsTop img{
+      height: 100px;
+      width: 100px;
+      margin: 0 auto;
+    }
+
+    #newsTitle
+    {
+      padding: 25px 0 25px 0;
+      text-align: center;
+      color: white;
+      margin-top: 0px;
+      margin-bottom: 3px;
+    }
+
+		#baner{
+			width: 50%;
+      height: 150px;
+			border: 4px solid #CCCBCB;
+		}
+
+		#newsLeft{
+			border: 3px solid #CCCBCB;
+      width: 76%;
+      height: 686px;
+      overflow: auto;
+      border-bottom-left-radius: 42px;
+		}
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    #newsLeft::-webkit-scrollbar {
+      display: none;
+    }
+
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+
+/* General Buttons */
+/*button {
+  width: 75px;
+  height: 40px;*/
+  /*background: linear-gradient(to bottom, #4eb5e5 0%,#389ed5 100%);*/ /* W3C */
+  /*border: none;
+  border-radius: 22px;
+  position: relative;
+  border-bottom: 0px solid #2b8bc6;
+  color: #fbfbfb;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+  font-size: 15px;
+  text-align: center;*/
+  /*text-indent: 5px;*/
+  /*box-shadow: 0px 3px 0px 0px rgba(0,0,0,.2);
+  cursor: pointer;*/
+
+/* Just for presentation */  
+  /*display: block;
+  margin:0 auto;*/
+/*}
+button:active {
+  box-shadow: 0px 2px 0px 0px rgba(0,0,0,.2);
+  top: 1px;
+}*/
+
+#homestay
+{
+  text-align: center;
+  border: 2px solid gray;
+  height: 342px;
+}
+
+.homestayTitle{
+  color: white;
+  background-color: #FECB00;
+  margin-top: auto;
+  font-size:28px;
+}
+
+#tour{
+  text-align: center;
+  border: 2px solid gray;
+  height: 342px;
+  border-bottom-right-radius: 42px;
+}
+
+.tourTitle{
+  color: white;
+  background-color: #CC66CC;
+  margin-top: auto;
+  font-size:28px;
+}
+
+/* custom scrollbar */
+/*::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 5px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}*/
+
+p{
+  margin-top: 0px;
+}
+
+#newsRight{
+  height: 689px;
+  }
+
+#newsRight img{
+  height: 150px;
+  width: 150px;
+}
+
+.fancybox-slide--iframe .fancybox-content{
+  height: 369px !important;
+}
+
+#close1 {
+  border-radius: 50%;
+  padding: 0.5em;
+  width: 43px;
+  height: 43px;
+  border: 2px solid white;
+  color: white;
+  position: relative;
+  right: -95%;
+  top:10px;
+  background-color: #D0D0D2;
+}
+#close1:hover {
+  border: 2px solid white;
+  background-color: red;
+  color: #ffffff;
+}
+
+#close1::before {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: #ffffff;
+  width: 5px;
+  height:20px;
+  left: 17px;
+  top: 9px;
+  bottom: 5px;
+  transform: rotate(45deg);
+}
+#close1::after {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: #ffffff;
+  height: 5px;
+  width: 20px;
+  top:17px;
+  left: 9px;
+  transform: rotate(45deg);
+}
+	</style>
+</head>
+<body style="background-color: white;" onload="onReadyNewsRight()">
+<button id="close1" onclick="javascript:parent.jQuery.fancybox.close();"></button>
+<div style="z-index: 0;margin-top: -41px;">
+<div id="newsTop">
+    <img src="./common/images/anime/animetop1.png">
+    <h1 id="newsTitle">熱海の最新情報をお知らせ</h1>
+    <img src="./common/images/anime/animetop2.png">
+</div>
+	<div id="newsContain">
+		<div id="newsLeft">
+            
+    </div>
+
+        <div id="newsRight" style="width: 42%;margin-left: 3px;">
+        	<div id="homestay">
+            <h1 class="homestayTitle">「泊まる」の最新情報</h1>
+        		<div style="display: flex;">
+				    	   <input id="qrcode_spa" type="text" name="" hidden="hidden" value="<?=$site_spa?>">
+					       <div style="background-color:white;margin-left: 3px;" id="qr_spa"></div>
+              <div>
+                 <p style="text-align: left;margin-left: 3px;">熱海市内にある宿泊施設からのお得な情報や、空室状況などの紹介をしております。</p>
+                 <img src="./common/images/anime/animeright.png">
+              </div>
+            </div>  
+        	</div>
+        	<div id="tour">
+            <h1 class="tourTitle">「観光」の最新情報</h1>
+        		<div style="display: flex;">
+      					<input id="qrcode_tour" type="text" name="" hidden="hidden" value="<?=$site_tour?>">
+      					<div style="background-color:white;margin-left: 3px;" id="qr_tour"></div>
+              <div>
+                  <p style="text-align: left;margin-left: 3px;">熱海市の旬な観光情報からこれからの熱海の見どころを紹介しております。</p>
+                  <img src="./common/images/anime/animeright1.png">
+        	    </div>
+            </div>
+        </div>
+    </div>
+</div>  
+<script type="text/javascript">
+ 
+  function setnews(id){
+        var url1 = "./news_qrcode.php?id=";
+        var id = id;
+       $.ajax({
+        type: 'POST',
+        url: 'getnews.php',
+        data: {
+          id:id,
+        },
+        success: function(msg) {
+          var news =[];
+          // alert("ok");
+          if(msg!=""){
+             news = JSON.parse(msg); 
+          }
+          // for (var i = 0; i< time.lenght;i++) {
+            var qrcode = news[0].qr;
+            var url2 = url1 +id;
+            // }
+         //   var form =
+              //  '<h1>'+category+'</h1>'+
+              // '<div style="display: flex; margin-top: 20px;padding-bottom: 20px">'+
+              //  '<input id="qrcode_time" type="text" name="" hidden="hidden" value="'+qrcode+'">'+
+              //  '<div style="margin: 0 auto;padding: 15px;background-color:white;" id="qr_time"></div>'+
+              // '</div>'
+              // ;
+        $.fancybox.open({
+            src  : url2,
+            type : 'iframe',
+            opts : {
+              afterShow : function( instance, current ) {
+                console.info( 'done!' );
+              }
+            }
+          });
+
+        }
+      });
+    }
+</script>
+<!-- JS Banner -->
+  <script type="text/javascript" src="./common/js/baner_news.js"></script>
+</body>
+
+<script type="text/javascript">
+  $(document).bind("contextmenu",function(e){
+  return false;
+    });
+</script>
+</html>
