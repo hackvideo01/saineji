@@ -112,7 +112,7 @@ function changelocation(btnvalue){
   return false;
     });
 </script>
-
+<!-- <script src="./common/js/screensaver.js"></script> -->
 <script type="text/javascript">
 
       // window.document.addEventListener("touchstart", Screensaver);
@@ -130,11 +130,12 @@ function changelocation(btnvalue){
       });
 
    
+    function callParent(){
+      window.parent.disable();
+    }
+      document.addEventListener("click", callParent);
+      document.addEventListener("keydown",callParent);
 
-//       window.onkeypress = function(event) {
-//     window.parent.window.whichKey(event.keyCode);
-// } 
-        
 </script>
 </body>
 </html>

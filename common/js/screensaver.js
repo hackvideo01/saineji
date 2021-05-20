@@ -2,16 +2,15 @@
 //   const currentScript = document.currentScript;
 //   window.addEventListener(
 //     "load",
-    var time = {};
-
+  var time = {};
+  const el = document.body.appendChild(document.createElement("div"));
+   var settime;
   function tick () {
     // function() {
       // const id = `s${Date.now()}`;
-      const el = document.body.appendChild(document.createElement("div"));
+      
       // el.id = id;
       el.style.position = "fixed";
-
-      var settime;
       var d = new Date();
       h = time.hours = d.getHours(); 
       m = time.minutes = d.getMinutes();
@@ -44,7 +43,11 @@
       el.className = "Screensaver";
       el.innerHTML = path;
 
-      
+    
+     } // Note the parens here, we invoke these functions right away
+    // { once: true }
+  // );
+// })();
       let timeoutId = null;
       // let timeout =
       //   (currentScript && Number(currentScript.getAttribute("timeout"))) ||
@@ -53,11 +56,12 @@
       function disable() {
 
         el.style.display = "none";
+        console.log(1213);
         timeoutId && clearTimeout(timeoutId);
         timeoutId = setTimeout(function() {
           parent.jQuery.fancybox.close();
           el.style.display = "block";
-        }, 6000);
+        }, 60000);
       }
       disable();
       // window.parent.window.addEventListener('touchstart', disable);
@@ -66,10 +70,10 @@
       // window.parent.window.addEventListener('touchcancel', disable);
 
 
-      window.addEventListener('touchstart', disable);
-      window.addEventListener('touchmove',disable);
-      window.addEventListener('touchend', disable);
-      window.addEventListener('touchcancel', disable);
+      // window.addEventListener('touchstart', disable);
+      // window.addEventListener('touchmove',disable);
+      // window.addEventListener('touchend', disable);
+      // window.addEventListener('touchcancel', disable);
 
       // document.getElementById("html").addEventListener("touchstart", function() {
       //     alert("ok");
@@ -86,10 +90,5 @@
     // },
 
      window.setTimeout(tick, settime);
-     } // Note the parens here, we invoke these functions right away
-    // { once: true }
-  // );
-// })();
-
 tick();
 
