@@ -99,7 +99,12 @@ function changelocation(btnvalue){
      $(document).bind("contextmenu",function(e){
       return false;
     });     
-
+ // call event from parent  
+    function callParent(){
+      window.parent.disable();
+    }
+      document.addEventListener("click", callParent);
+      document.addEventListener("keydown",callParent);
 </script>
   <!-- key API -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqVs5DU4Nm_m7wDBK894Bui6-mfmQ2xbo&callback=initMap&libraries=&v=weekly&language=ja&region=JP" async>

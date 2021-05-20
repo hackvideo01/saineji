@@ -980,6 +980,12 @@
   $(document).bind("contextmenu",function(e){
   return false;
     });
+   // call event from parent  
+    function callParent(){
+      window.parent.disable();
+    }
+      document.addEventListener("click", callParent);
+      document.addEventListener("keydown",callParent);
 </script>
 </body>
 </html>

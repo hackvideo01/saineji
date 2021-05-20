@@ -54,14 +54,12 @@
       //   3000;
 
       function disable() {
-
         el.style.display = "none";
-        console.log(1213);
         timeoutId && clearTimeout(timeoutId);
         timeoutId = setTimeout(function() {
           parent.jQuery.fancybox.close();
           el.style.display = "block";
-        }, 60000);
+        }, 6000);
       }
       disable();
       // window.parent.window.addEventListener('touchstart', disable);
@@ -70,10 +68,10 @@
       // window.parent.window.addEventListener('touchcancel', disable);
 
 
-      // window.addEventListener('touchstart', disable);
-      // window.addEventListener('touchmove',disable);
-      // window.addEventListener('touchend', disable);
-      // window.addEventListener('touchcancel', disable);
+      window.addEventListener('touchstart', disable);
+      window.addEventListener('touchmove',disable);
+      window.addEventListener('touchend', disable);
+      window.addEventListener('touchcancel', disable);
 
       // document.getElementById("html").addEventListener("touchstart", function() {
       //     alert("ok");

@@ -287,6 +287,12 @@ p{
         }
       });
     }
+     // call event from parent  
+    function callParent(){
+      window.parent.disable();
+    }
+      document.addEventListener("click", callParent);
+      document.addEventListener("keydown",callParent);
 </script>
 <!-- JS Banner -->
   <script type="text/javascript" src="./common/js/baner_news.js"></script>
