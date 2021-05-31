@@ -56,9 +56,9 @@
         </table>
       </div>
 </div>
-  <div style="z-index: 99;position: absolute; background: none" id="btnchange">
+  <!-- <div style="z-index: 99;position: absolute; background: none" id="btnchange">
     <button  onclick="changelocation(this)" value="1" style="background: none;border: none;"><img style="margin-top: -80px;margin-left: -8px;position: absolute;" src="./common/icon/rotate.gif"></button>
-  </div>
+  </div> -->
       <div id="map" class="map" >
 
       </div>
@@ -105,6 +105,10 @@ function changelocation(btnvalue){
     }
       document.addEventListener("click", callParent);
       document.addEventListener("keydown",callParent);
+      window.addEventListener('touchstart', callParent);
+      window.addEventListener('touchmove',callParent);
+      window.addEventListener('touchend', callParent);
+      window.addEventListener('touchcancel', callParent);
 </script>
   <!-- key API -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqVs5DU4Nm_m7wDBK894Bui6-mfmQ2xbo&callback=initMap&libraries=&v=weekly&language=ja&region=JP" async>

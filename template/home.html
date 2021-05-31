@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <html lang="jp">
 <head>
-  <title>サイネージくん</title>
+  <title>熱海観光マップ愛PHONE</title>
   <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" /> -->
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,7 +74,11 @@ html, body {
     <!-- content page -->
     <div style="z-index: -1;" id="content" class="content">
       <div id="header" class="header">
-        <h1 class="title1">サイネージくん</h1>
+        <div class="title1" style="text-align: center;">
+            <h1 class="logo1" style="margin-bottom: -10px;">熱海観光マップ</h1>
+            <h1 class="logo2">愛　PHONE</h1>
+        </div>
+        <!-- <img id="atami_logo" src="./common/images/atami_logo.png"> -->
         <div id="local-weather" class="local">
           <div style="padding-top: 10px;">
             
@@ -128,9 +132,9 @@ html, body {
       </div>
     </div>
   </div>
-  <div style="z-index: 99;position: absolute; background: none;right: 71px;" id="btnchange">
+  <!-- <div style="z-index: 99;position: absolute; background: none;right: 71px;" id="btnchange">
     <button  onclick="changelocation(this)" value="1" style="background: none;border: none;"><img style="margin-top: -75px;margin-left: -8px;position: absolute;" src="./common/icon/rotate.gif"></button>
-  </div>
+  </div> -->
   <div style="height: 150px; overflow: hidden;position: absolute;width: 100%;">
       <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
          <path d="M0.00,92.27 C216.83,192.92 304.30,8.39 500.00,109.03 L500.00,0.00 L0.00,0.00 Z" style="stroke: none;fill: #EFEFEF;"></path>
@@ -140,6 +144,7 @@ html, body {
       <div id="map" class="map preloading" >
         
       </div>
+      <p style="text-align: center;margin-top: 10px;font-size: 15px;color: #40484B;">問い合わせ先：熱海市飲食業連絡協議会　メールアドレス：atami.ryoin@gmail.com</p>
 </div>
     </div>
 
@@ -155,7 +160,6 @@ html, body {
     <script src="./common/js/screensaver.js"></script>
     <!-- <script src="./common/js/combine.js"></script> -->
     <script src="./common/js/music.js"></script>
-    <!-- <script type="text/javascript" src="./common/js/slide_image-touch.js"></script> -->
     <script type="text/javascript" src="./common/js/catetgory.js"></script>
 
     <script type="text/javascript">

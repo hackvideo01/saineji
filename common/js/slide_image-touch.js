@@ -14,7 +14,7 @@ var setSwiperSlideTimeout = function ( swiper ) {
 
 var mySwiper = new Swiper ('.swiper-container', 
   {
-    speed:2000,
+    speed:3000,
     direction: 'horizontal',
     navigation: 
     {
@@ -38,7 +38,7 @@ var mySwiper = new Swiper ('.swiper-container',
     },
     autoplay:  
     {
-      delay: 4000,
+      delay: 10000,
     },
     // effect: "fade",
     autoplayDisableOnInteraction: false,
@@ -52,14 +52,14 @@ var timer = function () {
         interval = setInterval(function () {
             // $("#next").click();
             mySwiper[0].autoplay.start();
-        }, 6000);
+        }, 10000);
     };
     timer();
 var timer1 = function () {
         setInterval(function () {
             // $("#next").click();
             mySwiper[1].autoplay.start();
-        }, 7000);
+        }, 10000);
     };
     timer1();
 

@@ -293,6 +293,10 @@ p{
     }
       document.addEventListener("click", callParent);
       document.addEventListener("keydown",callParent);
+      window.addEventListener('touchstart', callParent);
+      window.addEventListener('touchmove',callParent);
+      window.addEventListener('touchend', callParent);
+      window.addEventListener('touchcancel', callParent);
 </script>
 <!-- JS Banner -->
   <script type="text/javascript" src="./common/js/baner_news.js"></script>
