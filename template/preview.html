@@ -2,26 +2,23 @@
 	<html lang="jp">
 	<meta charset="utf-8">
 	<head>
-		<title>お店詳細</title>
+		<title>飲食店詳細</title>
 		<script type="text/javascript" src="./common/js/qrcode.js"></script>
 		<script type="text/javascript" src="./common/js/qrcode.min.js"></script>
 		<script type="text/JavaScript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
-		
-		<!-- Library MarkerWithLabel -->
-  		<script src="https://unpkg.com/@googlemaps/markerwithlabel/dist/index.min.js"></script>
 
-  		<!-- Global site tag (gtag.js) - Google Analytics -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=G-HRPEYVPEDJ"></script>
-			<script>
-			  window.dataLayer = window.dataLayer || [];
-			  function gtag(){dataLayer.push(arguments);}
-			  gtag('js', new Date());
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-YH9ZF3SLNV"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
 
-			  gtag('config', 'G-HRPEYVPEDJ');
-			</script>
-  		
+		  gtag('config', 'G-YH9ZF3SLNV');
+		</script>
+
 	</head>
-	<body onload=onReadyRestaurant() style="background-color: #ffffff;text-align: center;overflow:hidden;border-radius: 5px;">
+	<body onload=onReadyRestaurant() style="background-color: #ffffff;text-align: center;overflow:hidden;border-radius: 50px;">
 	<style type="text/css">
 		html, body {
 		  overscroll-behavior-x: none;
@@ -41,14 +38,14 @@
 			width: 80%;
 			text-align: left;
 		}
-		.table2 tr:nth-child(1) { border-bottom-style: dotted; }
-		.table2 tr:nth-child(2) { border-bottom-style: dotted; }
-		.table2 tr:nth-child(3) { border-bottom-style: dotted; }
 		td, th {
 			padding: 3px;
 			height: 42px;
 			font-size: 20px;
 		}
+		.table2 tr:nth-child(1) { border-bottom-style: dotted; }
+		.table2 tr:nth-child(2) { border-bottom-style: dotted; }
+		.table2 tr:nth-child(3) { border-bottom-style: dotted; }
 		th {
 			width: 20%;
 			background: #ffffff;
@@ -224,10 +221,8 @@
 	</style>
 	<!-- <button onclick="javascript:parent.jQuery.fancybox.close();">閉じる</button> -->
 	<div class="view-modal">
-		<button id="close1" onclick="javascript:parent.jQuery.fancybox.close();"></button>
+	<button id="close1" onclick="javascript:parent.jQuery.fancybox.close();"></button>
 	<form>
-	    <?foreach ($nightlife_detail as $key => $value) {?>
-			<?foreach ($nightlife_img as $key => $img) {?>
 			<div class="slideshow-container">
 				<div class="mySlides fade">
 					<img style="margin: 0 auto; height: 500px;width: 80%; border-radius: 30px;" src="<?=$img['UploadPath'];?>">
@@ -272,26 +267,20 @@
 			<tbody>
 				<tr>
 					<th>住　所</th>
-					<td><?=$value['Address']?></td>
+					<td></td>
 				</tr>
 				<tr>
 					<th>営業時間</th>
-					<td><?=$value['Time_work']?></td>
+					<td></td>
 				</tr>
 				<tr>
 					<th>電話番号</th>
-					<td><?=$value['Tel']?></td>
+					<td></td>
 				</tr>
-				<?if($value['Text1']!="" || $value['Text2'] !="" || $value['Text3'] !="" || $value['Text4'] !="" || $value['Text5'] !="" ){?>
 				<tr>
-					<td><?=$value['Text1']?><br>
-						<?=$value['Text2']?><br>
-						<?=$value['Text3']?><br>
-						<?=$value['Text4']?><br>
-						<?=$value['Text5']?><br>
+					<td>
 					</td>
 				</tr>
-				<?}?>
 			</tbody>
 		</table>
 		<div style="display: flex; margin-top: 20px;padding-bottom: 20px">
@@ -300,7 +289,6 @@
 			<input id="qrcode_restaurant2" type="text" name="" hidden="hidden" value="<?=$value['QR_2']?>">
 			<div style="margin: 0 auto;padding: 15px;background-color:white;" id="qr_restaurant2"></div>
 		</div>
-	<?}?>
 	<p style="font-size: 20px;font-weight: bold;">QRコードを読み取るとお店の詳細情報が見れます</p>
 	</form>
 	</div>
@@ -308,8 +296,8 @@
 	<script type="text/javascript">
 		 $(document).bind("contextmenu",function(e){
       return false;
-    });     
-		  // call event from parent  
+    });   
+		 // call event from parent  
     function callParent(){
       window.parent.disable();
     }
@@ -320,5 +308,6 @@
       window.addEventListener('touchend', callParent);
       window.addEventListener('touchcancel', callParent);
 	</script>
+	
 	</body>
 	</html>

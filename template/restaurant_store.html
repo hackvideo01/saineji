@@ -8,6 +8,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+
 <style type="text/css">
 	#imageFile::before {
 		content: "画像を選択";
@@ -177,7 +178,7 @@ action="<?=$base_url?>" enctype="multipart/form-data">
 <table class="t_form" align="center">
 	
 	<tr>
-		<th>飲食店</th>
+		<th>店名</th>
 		<td colspan="3">
 			<input type="text" class="w50p" name="Name" maxlength="50"  value="<?=$data_post["Name"]?>" required>
 			<input type="hidden" class="w50p" name="ID" value="<?=$data_post["ID"]?>" > 
@@ -221,7 +222,8 @@ action="<?=$base_url?>" enctype="multipart/form-data">
 			<?}?>
 			</select>
 		</td>
-
+		<? $role_check = $_SESSION['role'];?>
+		<?if($role_check == 1){?>
 		<th>掲載</th>
 		<td class="choice" >
 			<?if($data_post['Flag']==1){?>
@@ -235,8 +237,26 @@ action="<?=$base_url?>" enctype="multipart/form-data">
 			<input type="radio" id="Flag" name="Flag" value="0" checked onclick="isCheck(0)">
 			<label for="1">しない</label>
 			<?}?>
+		</td>
+		<?}else{?>
+		<th>掲載</th>
+		<td class="choice" >
+			<?if($data_post['Flag']==1){?>
+			<input onclick="return false;" type="radio" id="Flag" name="Flag" value="1" checked onclick="isCheck(1)">
+			<label for="0">する</label>
+			<input onclick="return false;" type="radio" id="Flag" name="Flag" value="0" onclick="isCheck(0)">
+			<label for="1">しない</label>
+			<?}else{?>
+			<input onclick="return false;" type="radio" id="Flag" name="Flag" value="1" onclick="isCheck(1)">
+			<label for="0">する</label>
+			<input onclick="return false;" type="radio" id="Flag" name="Flag" value="0" checked onclick="isCheck(0)">
+			<label for="1">しない</label>
+			<?}?>
 		</td>	
+		<?}?>	
 	</tr>
+	<?if($data_post['Flag']==1){?>
+	<?if($role_check == 1){?>
 	<tr id="FlagDate">
 		<th>掲載期間（開始）</th>
 		<td ><input type="date" class="w50p" name="FromDay" value="<?=$data_post["FromDay"]?>" ></td>
@@ -245,8 +265,18 @@ action="<?=$base_url?>" enctype="multipart/form-data">
 			<input type="date" class="w50p" name="ToDay" value="<?=$data_post["ToDay"]?>">
 		</td>
 	</tr>
+	<?}else{?>
+	<tr id="FlagDate">
+		<th>掲載期間（開始）</th>
+		<td ><input readonly="" type="date" class="w50p" name="FromDay" value="<?=$data_post["FromDay"]?>" ></td>
+		<th>終了</th>
+		<td>
+			<input readonly="" type="date" class="w50p" name="ToDay" value="<?=$data_post["ToDay"]?>">
+		</td>
+	</tr>
+	<?}?>
 	<tr id="banner">
-		<th>画像バーナー
+		<th>画像バナー
 		</th>
 		<td colspan="3">
 			<!-- <input id="userImageCount"  name="userImageCount"  value="<?=$data_post["userImageCount"]?>" hidden > -->
@@ -269,12 +299,46 @@ action="<?=$base_url?>" enctype="multipart/form-data">
 			</div>
 		</td>							
 	</tr>
+	<?}else if($data_post['Flag']==0){?>
+	<tr id="FlagDate" style="display: none;">
+		<th>掲載期間（開始）</th>
+		<td ><input type="date" class="w50p" name="FromDay" value="<?=$data_post["FromDay"]?>" ></td>
+		<th>終了</th>
+		<td>
+			<input type="date" class="w50p" name="ToDay" value="<?=$data_post["ToDay"]?>">
+		</td>
+	</tr>
+	<tr id="banner" style="display: none;">
+		<th>画像バナー
+		</th>
+		<td colspan="3">
+			<!-- <input id="userImageCount"  name="userImageCount"  value="<?=$data_post["userImageCount"]?>" hidden > -->
+			<label for="userImageBn" class="upload-btn">
+				<input id="userImageBn" class="userImage" name="userImageBn[]" type="file"  accept="image/*"  　/>
+				<span id="selectedFileName">画像を選択</span>
+			</label>
+			<div id="sending" class="gallery1">
+				<?if(is_countable($_SESSION["data_image"])>0){ $i=1;?>
+				<?foreach($_SESSION["data_image"] as $tmp){ ?>
+				<?if($tmp["delete"]!="1" and $tmp["Type"]=="5"){?>
+				<div class='view-img' id="img">
+					<span class='remove' data-file="<?=$tmp["UploadName"]?>"> <i class='fas fa-times'></i>
+					</span> 
+					<img class="show-image" src="<?=$tmp["UploadPath"]?>">  
+				</div>
+				<?}?>
+				<?}?>
+				<?}?>
+			</div>
+		</td>							
+	</tr>
+	<?}?>
 	<tr>
 		<th>メール</th>
 		<td ><input placeholder="example@gmail.com" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" type="text" class="w50p" name="MemberEmail" value="<?=$data_post["MemberEmail"]?>" ></td>
 		<th>電話番号</th>
 		<td>
-			<input pattern="\d{2,4}-\d{3,4}-\d{3,4}"  placeholder="ex:090-4569-6789" type="tel" class="w50p" name="Tel" value="<?=$data_post["Tel"]?>"　 required>
+			<input placeholder="ex:090-4569-6789" type="tel" class="w50p" name="Tel" value="<?=$data_post["Tel"]?>"　 required>
 		</td>
 	</tr>
 
@@ -305,11 +369,11 @@ action="<?=$base_url?>" enctype="multipart/form-data">
 	</tr> 
 	<tr>
 		<th>QRコード用URL1</th>
-		<td colspan="3"><input type="text" class="w50p" id="QR_1" name="QR_1"  value="<?=$data_post["QR_1"]?>" required></td>		
+		<td colspan="3"><input type="text" class="w50p" id="QR_1" name="QR_1"  value="<?=$data_post["QR_1"]?>" ></td>		
 	</tr>
 	<tr>
 		<th>QRコード用URL2</th>
-		<td colspan="3"><input type="text" class="w50p" id="QR_2" name="QR_2"  value="<?=$data_post["QR_2"]?>" required></td>		
+		<td colspan="3"><input type="text" class="w50p" id="QR_2" name="QR_2"  value="<?=$data_post["QR_2"]?>" ></td>		
 	</tr>
 	<tr>
 		<th>紹介コメント</th>
@@ -370,12 +434,12 @@ action="<?=$base_url?>" enctype="multipart/form-data">
 		this.style.height = 'auto';
 		this.style.height = (this.scrollHeight) + 'px';
 	});
-	function phoneMask() { 
-		var num = $(this).val().replace(/\D/g,''); 
-		if(num!=="")
-			$(this).val(num.substring(0,3) +"-"+ num.substring(3,7) +"-"+  num.substring(7,11)); 
-	}
-	$('[type="tel"]').keyup(phoneMask);
+	// function phoneMask() { 
+	// 	var num = $(this).val().replace(/\D/g,''); 
+	// 	if(num!=="")
+	// 		$(this).val(num.substring(0,3) +"-"+ num.substring(3,7) +"-"+  num.substring(7,11)); 
+	// }
+	// $('[type="tel"]').keyup(phoneMask);
 
 	function backdataview(){
 		var role = "<?=$_SESSION['role']?>" ;
@@ -618,7 +682,7 @@ for (var i = 0, len = files.length; i<len; i++) b.items.add(files[i])
 			var  next = "./?cat=1";	
 		}else{
 			alert("お店の情報を編集出来ました。");
-			var  next = "./?cat=1";	
+			var  next = "./index.php";	
 		}
 		
 		setTimeout("link()", 0);

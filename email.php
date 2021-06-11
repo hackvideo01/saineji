@@ -33,15 +33,15 @@ class sendmail
 			    $mail->Password = PASS_MAIL; // YOUR gmail password
 
 			    // Sender and recipient settings
-				$mail->setFrom(MAIL_NAME, '熱海サイネージシステム');
+				$mail->setFrom(MAIL_NAME, '熱海観光マップ「愛PHONE」');
 			    $mail->IsHTML(true);
 			    $mail->AllowEmpty = true;
 
 			    // echo "Email message sent.";	
 	    		$mail->addAddress($data["mail"],"" );
 	    		$mail->Body = $data["content"];
-	    		$mail->addReplyTo('vuongnb1102@gmail.com', ''); // to set the reply to
-	    	 	$mail->Subject = "このサイトを設定にご覧ください。";
+	    		// $mail->addReplyTo('vuongnb1102@gmail.com', ''); // to set the reply to
+	    	 	$mail->Subject = $data["subject"];
 			    $mail->AltBody = 'Plain text message body for non-HTML email client. Gmail SMTP email body.';
 	    		$mail->send();
 	    		

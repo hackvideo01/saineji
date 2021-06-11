@@ -7,6 +7,16 @@
 		<script type="text/javascript" src="./common/js/qrcode.min.js"></script>
 		<script type="text/JavaScript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
 
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-YH9ZF3SLNV"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'G-YH9ZF3SLNV');
+		</script>
+
 	</head>
 	<body onload=onReadyRestaurant() style="background-color: #ffffff;text-align: center;overflow:hidden;border-radius: 50px;">
 	<style type="text/css">
@@ -274,7 +284,6 @@
 				</tr>
 				<?if($value['Text1']!="" || $value['Text2'] !="" || $value['Text3'] !="" || $value['Text4'] !="" || $value['Text5'] !="" ){?>
 				<tr>
-					<th>お勧め</th>
 					<td><?=$value['Text1']?><br>
 						<?=$value['Text2']?><br>
 						<?=$value['Text3']?><br>

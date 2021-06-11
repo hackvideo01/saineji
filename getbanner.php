@@ -21,6 +21,7 @@ include("./include/base/conf.php");
 	}else if ($vw_ctl=="nightlife") {
 		get_banner_nightlife();
 	} 
+
 	// Function to get the client IP address
 	function get_banner_restaurant(){
 

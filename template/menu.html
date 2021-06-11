@@ -1,5 +1,15 @@
-
+  <!-- Fancy box -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous"></script> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" /> -->
+<!-- // slide js -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css" integrity="sha512-nNlU0WK2QfKsuEmdcTwkeh+lhGs6uyOxuUs+n+0oXSYDok5qy0EI0lt01ZynHq6+p/tbgpZ7P+yUb+r71wqdXg==" crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css" href="./common/css/jquery.fancybox.min.css">
+  
 <style type="text/css">
+.fancybox-slide--iframe .fancybox-content {
+    max-width  : 992px;
+    max-height : auto;
+}
   /*.main-menu{
     margin: 30px 0 50px;
     padding: 20px;
@@ -247,8 +257,7 @@
         
           <h1 class="menu-title">会員管理画面</h1>
           <button  onclick="window.location.href='?cat=2&ID=<?=$_SESSION["ID_Mater"]?>'" class="btn-menu"><i class="far fa-edit"></i> お店情報修正へ</button> 
-          <button  onclick="window.location.href='?cat=2'" class="btn-menu"  >News修正へ</button> 
-
+          <button  onclick="previewR(<?=$_SESSION["ID_Mater"]?>)" class="btn-menu"><i class="fas fa-caret-square-left"></i> プレビューへ</button>
       </div>
      <div id="formFooter">
     </div>
@@ -263,8 +272,7 @@
         
           <h1 class="menu-title">会員管理画面</h1>
           <button  onclick="window.location.href='?cat=5&ID=<?=$_SESSION["ID_Mater"]?>'" class="btn-menu"><i class="far fa-edit"></i> 宿泊情報修正へ</button> 
-          <button  onclick="window.location.href='?cat=5'" class="btn-menu"  >News修正へ</button> 
-
+          <button  onclick="previewH(<?=$_SESSION["ID_Mater"]?>)" class="btn-menu"><i class="fas fa-caret-square-left"></i> プレビューへ</button>
       </div>
      <div id="formFooter">
     </div>
@@ -279,8 +287,7 @@
         
           <h1 class="menu-title">会員管理画面</h1>
           <button  onclick="window.location.href='?cat=7&ID=<?=$_SESSION["ID_Mater"]?>'" class="btn-menu"><i class="far fa-edit"></i> 観光情報修正へ</button> 
-          <button  onclick="window.location.href='?cat=7'" class="btn-menu"  >News修正へ</button> 
-
+          <button  onclick="previewT(<?=$_SESSION["ID_Mater"]?>)" class="btn-menu"><i class="fas fa-caret-square-left"></i> プレビューへ</button>
       </div>
      <div id="formFooter">
     </div>
@@ -295,8 +302,7 @@
         
           <h1 class="menu-title">会員管理画面</h1>
           <button  onclick="window.location.href='?cat=11&ID=<?=$_SESSION["ID_Mater"]?>'" class="btn-menu"><i class="far fa-edit"></i> 夜遊び情報修正へ</button> 
-          <button  onclick="window.location.href='?cat=11'" class="btn-menu"  >News修正へ</button> 
-
+          <button  onclick="previewN(<?=$_SESSION["ID_Mater"]?>)" class="btn-menu"><i class="fas fa-caret-square-left"></i> プレビューへ</button>
       </div>
      <div id="formFooter">
     </div>
@@ -311,7 +317,6 @@
         
           <h1 class="menu-title">会員管理画面</h1>
           <button  onclick="window.location.href='?cat=13&ID=<?=$_SESSION["ID_Mater"]?>'" class="btn-menu"><i class="far fa-edit"></i> NEWS情報修正へ</button> 
-          <button  onclick="window.location.href='?cat=13'" class="btn-menu"  >News修正へ</button> 
 
       </div>
      <div id="formFooter">
@@ -319,3 +324,64 @@
       </div>
     </div>
     <?}?>
+<script type="text/javascript">
+  //Restaurant
+  function previewR(id){
+  url = "./restaurant_modal.php?id=" +id;
+  $.fancybox.open({
+    src  : this.url,
+    type : 'iframe',
+    opts : {
+      afterShow : function( instance, current ) {
+// console.info( 'done!' );
+}
+}
+});
+}
+  //nightlife_modal
+  function previewN(id){
+  url = "./nightlife_modal.php?id=" +id;
+  $.fancybox.open({
+    src  : this.url,
+    type : 'iframe',
+    opts : {
+      afterShow : function( instance, current ) {
+// console.info( 'done!' );
+}
+}
+});
+}
+  //hotel_modal
+  function previewH(id){
+  url = "./hotel_modal.php?id=" +id;
+  $.fancybox.open({
+    src  : this.url,
+    type : 'iframe',
+    opts : {
+      afterShow : function( instance, current ) {
+// console.info( 'done!' );
+}
+}
+});
+}
+  //tour_modal
+  function previewT(id){
+  url = "./tour_modal.php?id=" +id;
+  $.fancybox.open({
+    src  : this.url,
+    type : 'iframe',
+    opts : {
+      afterShow : function( instance, current ) {
+// console.info( 'done!' );
+}
+}
+});
+}
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.js" integrity="sha512-j7/1CJweOskkQiS5RD9W8zhEG9D9vpgByNGxPIqkO5KrXrwyDAroM9aQ9w8J7oRqwxGyz429hPVk/zR6IOMtSA==" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="./common/js/jquery.fancybox.min.js"></script>
+ <!-- <script type="text/javascript" src="./common/js/slide_image-touch.js"></script> -->
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>

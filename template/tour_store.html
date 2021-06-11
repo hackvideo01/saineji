@@ -184,7 +184,7 @@ action="<?=$base_url?>" enctype="multipart/form-data">
 		<td><input placeholder="example@gmail.com" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" type="text" class="w50p" name="MemberEmail" value="<?=$data_post["MemberEmail"]?>"></td>
 		<th>電話番号</th>
 		<td>
-			<input pattern="\d{2,4}-\d{3,4}-\d{3,4}"  placeholder="ex:090-4569-6789" type="tel" class="w50p" name="Tel" value="<?=$data_post["Tel"]?>">
+			<input placeholder="ex:090-4569-6789" type="tel" class="w50p" name="Tel" value="<?=$data_post["Tel"]?>">
 		</td>
 	</tr>
 	<tr>
@@ -231,7 +231,7 @@ action="<?=$base_url?>" enctype="multipart/form-data">
 	</tr> 
 	<tr>
 		<th>QRコード用URL</th>
-		<td colspan="3"><input type="text" class="w50p" id="QR" name="QR"  value="<?=$data_post["QR"]?>" required></td>		
+		<td colspan="3"><input type="text" class="w50p" id="QR" name="QR"  value="<?=$data_post["QR"]?>" ></td>		
 	</tr>
 	<tr>
 		<th>施設情報</th>
@@ -275,12 +275,12 @@ action="<?=$base_url?>" enctype="multipart/form-data">
 		this.style.height = (this.scrollHeight) + 'px';
 	});
 
-	function phoneMask() { 
-		var num = $(this).val().replace(/\D/g,''); 
-		if(num!=="")
-			$(this).val(num.substring(0,3) +"-"+ num.substring(3,7) +"-"+  num.substring(7,11)); 
-	}
-	$('[type="tel"]').keyup(phoneMask);
+	// function phoneMask() { 
+	// 	var num = $(this).val().replace(/\D/g,''); 
+	// 	if(num!=="")
+	// 		$(this).val(num.substring(0,3) +"-"+ num.substring(3,7) +"-"+  num.substring(7,11)); 
+	// }
+	// $('[type="tel"]').keyup(phoneMask);
 
 	function backdataview(){
 		var role = "<?=$_SESSION['role']?>" ;

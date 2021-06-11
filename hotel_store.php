@@ -89,15 +89,26 @@
 		 		}
  			}
  			$tmpmail = [];
- 			$content= $_REQUEST['Name']."<br>";
- 			$content .= date("Y")."年".date("m")."月".date("d")."日  ".date("H")+'7'."時".date("i")."分 <br>";
- 			$content.= "宿泊の情報を申し込みました。<br>";
+ 			$subject= "熱海観光マップ「愛PHONE」管理画面の情報を送らせていただきます。"; 
+ 			// $content= $_REQUEST['Name']."<br>";
+ 			// $content .= date("Y")."年".date("m")."月".date("d")."日  ".date("H")+'7'."時".date("i")."分 <br>";
+ 			$content= $_REQUEST['Name']."　様<br><br>";
+ 			$content.= "以下のURLに管理画面を設定しました。<br>";
  			$content.= "サイト：".WEB_URL."<br>";
- 			$content.= "ログインの情報：<br>";
- 			$content.= "&#09;ユーザ：".$username."<br>";
-	 		$content.= "&#09;パスワード：".$password."<br>";
+ 			// $content.= "ログインの情報：<br>";
+ 			$content.= "&#09;アカウント名：".$username."<br>";
+	 		$content.= "&#09;パスワード：".$password."<br><br>";
+
+	 		$content.= "アカウント名、パスワードを入力してホテルの情報を更新することが出来ます。<br>
+						ご確認のほどよろしくお願いいたします。<br><br><br>";
+
+			$content.= "ご不明な点ございましたらご連絡ください。<br>
+						対応時間　平日9:00～17:00<br>
+						三谷（みたに）まで<br>
+						TEL:055-976-5511<br>";
 
  			$tmpmail["content"] = $content;
+ 			$tmpmail["subject"] = $subject;
  			$tmpmail["mail"] = $_REQUEST['MemberEmail'];
 			$send_mail->sendmailto_one($tmpmail);
 
@@ -142,19 +153,28 @@
 		 		}
  			}
  			// get user data
- 			$sql = "SELECT * FROM `user` where ID_Mater=".$_REQUEST["ID"];
+ 			$sql = "SELECT * FROM `user` where role=3 and ID_Mater=".$_REQUEST["ID"];
 			$rec_user = $db->get_one($sql,$params);
  			// if($_SESSION['role'] ==1){
- 				$content= $_REQUEST['Name']."<br>";
-	 			$content .= date("Y")."年".date("m")."月".date("d")."日  ".date("H")+'7'."時".date("i")."分 <br>";
-	 			$content.= "宿泊の情報を編集出来ました。<br>";
+				$subject= "ホテルの情報を更新しました。";
+ 				$content= $_REQUEST['Name']."　様<br><br>";
+	 			// $content .= date("Y")."年".date("m")."月".date("d")."日  ".date("H")+'7'."時".date("i")."分 <br>";
+	 			$content.= "ホテルの情報が更新されました。<br><br>";
+	 			$content.= "【ログイン情報】※<br>";
 	 			$content.= "サイト：".WEB_URL."<br>";
 	 			if($rec_user!=null){
-	 				$content.= "ログインの情報：<br>";
-		 			$content.= "&#09;ユーザ：".$rec_user["username"]."<br>";
-	 				$content.= "&#09;パスワード：".$rec_user["password"]."<br>";	
+		 			$content.= "&#09;アカウント名：".$rec_user["username"]."<br>";
+	 				$content.= "&#09;パスワード：".$rec_user["password"]."<br><br>";	
 	 			}
+	 			$content.= "アカウント名、パスワードを入力してホテルの情報を更新することが出来ます。<br>
+						ご確認のほどよろしくお願いいたします。<br><br><br>";
+
+				$content.= "ご不明な点ございましたらご連絡ください。<br>
+						対応時間　平日9:00～17:00<br>
+						三谷（みたに）まで<br>
+						TEL:055-976-5511<br>";
 	 			$tmpmail["content"] = $content;
+	 			$tmpmail["subject"] = $subject;
 	 			$tmpmail["mail"] = $_REQUEST['MemberEmail'];
 				$send_mail->sendmailto_one($tmpmail);
  			// }

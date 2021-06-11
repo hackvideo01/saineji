@@ -2,8 +2,8 @@
 	define( "HOST_MAIL", "strategic2.sakura.ne.jp" );  //DB接続ホスト
 	
 	define( "POST_MAIL", "587" );       //DB接続ユーザー
-	define( "MAIL_NAME", "info@soshikikachi-dai3shoinkai.com" );   //DB接続パスワード
-	define( "PASS_MAIL", "bR7d8maS" );       //DB名
+	define( "MAIL_NAME", "info@atami-aiphone.com" );   //DB接続パスワード
+	define( "PASS_MAIL", "R39QJwaE" );       //DB名
 	 // const RECEIVE_MAIL = ["komori@izumokki.co.jp",
 		// 					"ryoyu@ma.tnc.ne.jp",
 		// 					"shion@strategic.jp"

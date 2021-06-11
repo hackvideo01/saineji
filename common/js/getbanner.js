@@ -235,3 +235,5 @@ function randomProperty(obj) {
     return obj[keys[ keys.length * Math.random() << 0]];
 };
 getbanner();
+
+setInterval(getbanner,3600000);

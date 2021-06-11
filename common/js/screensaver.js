@@ -33,7 +33,7 @@
         //   if (result1 == true) {
              path = `<div id="display">
                 <video autoplay muted loop>
-                <source src="./common/images/Screensaver/atami1.mp4" type="video/mp4" >
+                <source src="http://127.0.0.1//video//atami1.mp4" type="video/mp4" >
                 </video>
                 </div>`;
           // } else {
